@@ -1,0 +1,20 @@
+{
+  "$schema": "https://raw.githubusercontent.com/google-gemini/gemini-cli/main/schemas/settings.schema.json",
+  "mcpServers": {
+    "pathfinder": {
+      "command": "path/to/binaries/pathfinder",
+      "args": [
+        "path/to/your/project"
+      ],
+      "trust": true
+    },
+    "playwright": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@playwright/mcp@latest"
+      ],
+      "trust": true
+    }
+  }
+}

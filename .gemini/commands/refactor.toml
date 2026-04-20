@@ -1,0 +1,58 @@
+description = "Refactor existing code safely: incremental changes, behavior preservation. Requires specific goal — refuses vague requests. Impact analysis → incremental change → parity verification."
+
+prompt = """
+# Refactor Workflow
+
+## Scope Guard
+
+Requires specific, actionable goal:
+- ✅ `/refactor extract storage interface in task feature`
+- ✅ `/refactor split user handler into separate auth handler`
+- ✅ `/refactor migrate callbacks to async/await in notification service`
+- ❌ `/refactor apps/backend` — too vague. Audit first.
+- ❌ `/refactor improve code quality` — what specific issue?
+
+Vague request → "Refactoring needs a specific target. Run code review first to identify issues."
+
+## When to Use / NOT
+
+Use: restructuring, pattern migration, breaking dep upgrades, QA findings, extracting interfaces.
+Don't: new features (orchestrator), small bugs (orchestrator Pattern B), "find improvements" (QA audit first).
+
+## Phases
+
+### 1: Impact Analysis
+1. Map blast radius (files, modules, tests affected)
+2. Document existing behavior (passing tests, contracts)
+3. Identify risks (incremental vs big-bang?)
+4. Create ordered refactoring plan (each step preserves behavior)
+5. ADR if trade-offs involved
+
+### 2: Incremental Change
+
+Per step:
+1. Verify existing tests pass
+2. Make one incremental change
+3. Run tests — behavior preserved
+4. Add tests if refactoring exposes untested behavior
+
+Never break build for more than one step.
+
+### 3: Parity Verification
+1. Full validation (lint, type check, tests, build)
+2. Coverage ≥ before
+3. Same inputs = same outputs
+4. UI touched → E2E tests
+
+### 4: Ship
+```bash
+git commit -m "refactor(<scope>): <description>"
+```
+
+## Completion Criteria
+- [ ] Impact analysis documented
+- [ ] All changes incremental, tests passing each step
+- [ ] Full verification passes
+- [ ] Coverage ≥ pre-refactoring
+- [ ] Committed with `refactor` type
+"""
