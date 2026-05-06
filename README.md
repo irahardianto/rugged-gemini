@@ -32,9 +32,9 @@ You can drop this configuration into the root of your project to transform how y
 ### Key Features
 
 *   📏 **Consolidated Rules** — covering security, reliability, architecture, maintainability, language idioms, and DevOps, all inside a single auto-loaded `GEMINI.md`.
-*   🤖 **11 Specialized Agents** — specialized personas ranging from Architect and Backend Engineer to QA Analyst and Security Engineer, with strict domain boundaries.
-*   🛠️ **38 Specialized Skills** — on-demand capabilities for debugging, design, performance optimization, and more.
-*   🔄 **Orchestrated Commands** — end-to-end development processes via `/orchestrate` and `/refactor` native Gemini CLI commands.
+*   🤖 **15 Specialized Agents** — organized into Research, Builder, and Reviewer layers with strict MECE domain boundaries.
+*   🛠️ **66 Specialized Skills** — on-demand capabilities spanning 16 languages/frameworks, debugging, design, performance, security, and more.
+*   🔄 **Orchestrated Commands** — end-to-end development processes via `/orchestrate` and `/refactor` native Gemini CLI commands with 11 workflow templates.
 
 > **💡 Everything is modular.** Agents, rules, and skills work independently — you don't need workflows to benefit from them. Use only what you need, modify anything, or build your own commands. It's a toolkit, not a framework.
 
@@ -139,14 +139,38 @@ The power of the setup comes from its extensive collection of rules covering eve
 
 Loadable on demand via the `.gemini/skills/` directory:
 
-*   **Debugging Protocol**: Systematic approach to solving errors.
-*   **Frontend Design**: Guidelines for creating visually appealing UIs.
-*   **Mobile Design**: Production-grade mobile interfaces for Flutter and React Native.
-*   **Sequential Thinking**: A tool for breaking down complex problems.
+#### 🔤 Language & Framework Idioms (24 skills)
+*   **10 Language Idioms**: Go, TypeScript, Rust, Python, Java, C#, C++, Swift, Kotlin, Elixir, JavaScript, PHP, Ruby, SQL
+*   **8 Framework Idioms**: Vue 3, Flutter, React, Angular, Next.js, Django, Laravel, Rails, Spring Boot, .NET
+
+#### 🔧 Process & Domain Skills
+*   **Debugging Protocol**: Systematic hypothesis-driven approach to solving errors.
 *   **Code Review**: Structured code review protocol against the full rule set.
 *   **Guardrails**: Pre-flight checklist and post-implementation self-review.
+*   **Sequential Thinking**: A tool for breaking down complex problems.
 *   **ADR (Architecture Decision Records)**: Document significant architectural decisions with context and trade-offs.
+*   **Research Methodology**: Structured research workflows and source verification.
+
+#### 🎨 Design & Architecture Skills
+*   **Frontend Design**: Guidelines for creating visually appealing UIs (includes Vue framework guide).
+*   **Mobile Design**: Production-grade mobile interfaces for Flutter and React Native.
+*   **Project Structure**: Feature-based layouts for Go, Vue, Python, Rust, and Flutter.
+*   **API Design Principles**: RESTful API design, versioning, and contract-first development.
+
+#### ⚡ Performance & Operations Skills
 *   **Performance Optimization**: Profile-driven performance optimization tooling.
+*   **Incident Response**: Structured triage, root-cause analysis, and postmortem workflows.
+*   **Chaos Testing**: Failure injection strategies and resilience validation.
+*   **Supply Chain Security**: Dependency auditing, SBOM generation, and vulnerability management.
+
+#### 🏗️ Specialized Domain Skills
+*   **Data Engineering**: ETL pipelines, data validation, and warehouse patterns.
+*   **ML Engineering**: Model training, serving, and experiment tracking.
+*   **CLI Development**: Command-line tool design, argument parsing, and UX.
+*   **Payment Integration**: PCI compliance, idempotency, and payment gateway patterns.
+*   **Embedded Systems**: Resource-constrained development and hardware interaction.
+*   **API Documentation**: OpenAPI specs, SDK generation, and developer portal guides.
+*   **Refactoring Patterns**: Code smell detection and safe transformation techniques.
 
 ### Development Workflows
 
@@ -157,8 +181,10 @@ The setup includes native Gemini CLI commands for orchestration and safe refacto
 Decomposes user requirements into sub-agent dispatches.
 
 ```
-SCOUT → DESIGN → BUILD → TEST → REVIEW → VERIFY → DOCUMENT
+SCOUT → DESIGN → BUILD → TEST → REVIEW → REMEDIATE → VERIFY → DOCUMENT
 ```
+
+Additional specialized primitives: `OPTIMIZE` (performance), `INCIDENT` (triage & postmortem), `REFACTOR` (safe code transformation).
 
 #### 🔧 Specialized Workflows
 
@@ -173,9 +199,8 @@ SCOUT → DESIGN → BUILD → TEST → REVIEW → VERIFY → DOCUMENT
 ```
 .gemini/
 ├── GEMINI.md              # Consolidated engineering rules (auto-loaded)
-├── README.md              # Internal documentation
 ├── settings.json          # MCP server configurations (Pathfinder, Playwright)
-├── agents/                # 11 specialized agent personas
+├── agents/                # 15 specialized agent personas
 │   ├── architect.md
 │   ├── backend-engineer.md
 │   ├── frontend-engineer.md
@@ -186,26 +211,53 @@ SCOUT → DESIGN → BUILD → TEST → REVIEW → VERIFY → DOCUMENT
 │   ├── technical-writer.md
 │   ├── qa-analyst.md
 │   ├── security-engineer.md
-│   └── ux-reviewer.md
+│   ├── ux-reviewer.md
+│   ├── scout.md              # NEW — research & exploration
+│   ├── performance-engineer.md  # NEW — profiling & optimization
+│   ├── incident-responder.md    # NEW — triage & postmortems
+│   └── refactoring-specialist.md  # NEW — safe code transformation
 ├── commands/              # 2 orchestrated commands
-│   ├── orchestrate.toml   # Multi-agent pipeline manager
-│   └── refactor.toml      # Safe incremental restructuring
-└── skills/                # 38 on-demand skills
-    ├── go-idioms/
+│   ├── orchestrate.toml   # Multi-agent pipeline manager (11 templates)
+│   └── refactor.toml      # Safe incremental restructuring (3-path elicitation)
+└── skills/                # 66 on-demand skills
+    ├── go-idioms/         # Language idioms (10 languages)
     ├── typescript-idioms/
-    ├── vue-idioms/
-    ├── flutter-idioms/
     ├── rust-idioms/
     ├── python-idioms/
-    ├── debugging-protocol/
+    ├── java-idioms/       # NEW
+    ├── csharp-idioms/     # NEW
+    ├── cpp-idioms/        # NEW
+    ├── swift-idioms/      # NEW
+    ├── kotlin-idioms/     # NEW
+    ├── elixir-idioms/     # NEW
+    ├── javascript-idioms/ # NEW
+    ├── sql-idioms/        # NEW
+    ├── php-idioms/        # NEW
+    ├── ruby-idioms/       # NEW
+    ├── vue-idioms/        # Framework idioms (8 frameworks)
+    ├── flutter-idioms/
+    ├── react-idioms/      # NEW
+    ├── angular-idioms/    # NEW
+    ├── nextjs-idioms/     # NEW
+    ├── django-idioms/     # NEW
+    ├── laravel-idioms/    # NEW
+    ├── rails-idioms/      # NEW
+    ├── spring-boot-idioms/ # NEW
+    ├── dotnet-idioms/     # NEW
+    ├── debugging-protocol/ # Process & domain skills
     ├── code-review/
     ├── guardrails/
-    ├── perf-optimization/
-    ├── sequential-thinking/
-    ├── adr/
-    ├── frontend-design/
-    ├── mobile-design/
-    └── ...                # + 24 more
+    ├── incident-response/ # NEW
+    ├── chaos-testing/     # NEW
+    ├── refactoring-patterns/ # NEW
+    ├── supply-chain-security/ # NEW
+    ├── data-engineering/  # NEW
+    ├── ml-engineering/    # NEW
+    ├── cli-development/   # NEW
+    ├── payment-integration/ # NEW
+    ├── embedded-systems/  # NEW
+    ├── api-documentation/ # NEW
+    └── ...                # + 22 more (perf, adr, design, etc.)
 ```
 
 <!-- ROADMAP -->
@@ -229,6 +281,25 @@ Rugged Gemini ships with **opinionated defaults** for specific technology stacks
 | **Mobile**       | Flutter + Riverpod — freezed models, go_router      | `flutter-idioms/SKILL.md`                           |
 | **Systems**      | Rust — tokio, thiserror/anyhow, clippy pedantic     | `rust-idioms/SKILL.md`                              |
 | **Scripting/AI** | Python — ruff, mypy strict, pytest, Pydantic        | `python-idioms/SKILL.md`                            |
+
+**Community Language Support** — additional idiom skills available (no opinionated defaults):
+
+| Language/Framework | Skill File |
+| --- | --- |
+| Java / Spring Boot | `java-idioms/SKILL.md`, `spring-boot-idioms/SKILL.md` |
+| C# / .NET | `csharp-idioms/SKILL.md`, `dotnet-idioms/SKILL.md` |
+| PHP / Laravel | `php-idioms/SKILL.md`, `laravel-idioms/SKILL.md` |
+| Ruby / Rails | `ruby-idioms/SKILL.md`, `rails-idioms/SKILL.md` |
+| C++ | `cpp-idioms/SKILL.md` |
+| Swift | `swift-idioms/SKILL.md` |
+| Kotlin | `kotlin-idioms/SKILL.md` |
+| Elixir | `elixir-idioms/SKILL.md` |
+| JavaScript | `javascript-idioms/SKILL.md` |
+| SQL | `sql-idioms/SKILL.md` |
+| React | `react-idioms/SKILL.md` |
+| Angular | `angular-idioms/SKILL.md` |
+| Next.js | `nextjs-idioms/SKILL.md` |
+| Django | `django-idioms/SKILL.md` |
 
 **Using a different framework?** The idiom skills are modular — swap or edit them to match your stack.
 

@@ -26,7 +26,15 @@ Every dep = liability (security, build time, maintenance). Before adding: "50 li
 - [ ] All deps maintained + latest stable
 - [ ] Imports organized (stdlib→external→internal)
 - [ ] Unused imports removed
+- [ ] CVE scan clean (run before every release)
+- [ ] Licenses audited against project allowlist
+
+### Vulnerability Scanning
+Run per-language CVE scanner as part of CI. Fail on critical/high severity.
+For the full per-language command reference and SBOM/license compliance procedures, load:
+→ `@.gemini/skills/supply-chain-security/SKILL.md`
 
 ### Related
 - Security Mandate GEMINI.md § Security Mandate
 - Security Principles GEMINI.md § Security Principles
+- Supply Chain Security @.gemini/skills/supply-chain-security/SKILL.md

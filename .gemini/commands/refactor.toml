@@ -1,36 +1,61 @@
-description = "Refactor existing code safely: incremental changes, behavior preservation. Requires specific goal — refuses vague requests. Impact analysis → incremental change → parity verification."
+description = "Refactor existing code safely: 3-path requirement elicitation → impact analysis → incremental change → parity verification. Dispatches @refactoring-specialist for execution."
 
 prompt = """
 # Refactor Workflow
 
-## Scope Guard
+## Phase 0: Requirement Elicitation
 
-Requires specific, actionable goal:
+Determine refactoring source before proceeding:
+
+### Path A — Human-Specified
+User provides a specific, actionable target:
 - ✅ `/refactor extract storage interface in task feature`
 - ✅ `/refactor split user handler into separate auth handler`
 - ✅ `/refactor migrate callbacks to async/await in notification service`
-- ❌ `/refactor apps/backend` — too vague. Audit first.
-- ❌ `/refactor improve code quality` — what specific issue?
+→ Proceed directly to Phase 1
 
-Vague request → "Refactoring needs a specific target. Run code review first to identify issues."
+### Path B — Tool-Driven
+User references a static analysis tool as the requirement source:
+- ✅ `/refactor from-deepsource` — read DeepSource MCP findings
+- ✅ `/refactor from-clippy` — parse `cargo clippy` output
+- ✅ `/refactor from-lint` — parse linter output (ESLint, golangci-lint, ruff)
+→ Parse tool findings → present summary → user approves scope → proceed to Phase 1
+
+Supported tools:
+| Tool | Integration |
+|---|---|
+| DeepSource MCP | Read findings via `deepsource` MCP tools |
+| cargo clippy | Parse `cargo clippy --message-format json` |
+| golangci-lint | Parse `golangci-lint run --out-format json` |
+| ESLint | Parse `npx eslint . --format json` |
+| ruff | Parse `ruff check . --output-format json` |
+| SonarQube | Read via API if available |
+
+### Path C — Discovery
+User doesn't know what to refactor, or provides vague request:
+- ✅ `/refactor discover` — audit first, then refactor
+- ❌ `/refactor apps/backend` — too vague
+- ❌ `/refactor improve code quality` — what specific issue?
+→ Dispatch SCOUT(@scout + @qa-analyst, code smell audit)
+→ Present findings → user approves scope → proceed to Phase 1
+
+Vague request without path → "Run `/refactor discover` to find issues, or specify a target like `/refactor extract storage interface in task feature`."
 
 ## When to Use / NOT
 
-Use: restructuring, pattern migration, breaking dep upgrades, QA findings, extracting interfaces.
-Don't: new features (orchestrator), small bugs (orchestrator Pattern B), "find improvements" (QA audit first).
+Use: restructuring, pattern migration, breaking dep upgrades, QA findings, extracting interfaces, tool-driven cleanup.
+Don't: new features (orchestrator), small bugs (orchestrator Pattern B), "find improvements" without `/refactor discover`.
 
-## Phases
-
-### 1: Impact Analysis
+## Phase 1: Impact Analysis
+Dispatch @refactoring-specialist:
 1. Map blast radius (files, modules, tests affected)
 2. Document existing behavior (passing tests, contracts)
 3. Identify risks (incremental vs big-bang?)
 4. Create ordered refactoring plan (each step preserves behavior)
 5. ADR if trade-offs involved
 
-### 2: Incremental Change
-
-Per step:
+## Phase 2: Incremental Change
+@refactoring-specialist executes per step:
 1. Verify existing tests pass
 2. Make one incremental change
 3. Run tests — behavior preserved
@@ -38,18 +63,20 @@ Per step:
 
 Never break build for more than one step.
 
-### 3: Parity Verification
+## Phase 3: Parity Verification
+Dispatch @qa-analyst for review:
 1. Full validation (lint, type check, tests, build)
 2. Coverage ≥ before
 3. Same inputs = same outputs
 4. UI touched → E2E tests
 
-### 4: Ship
+## Phase 4: Ship
 ```bash
 git commit -m "refactor(<scope>): <description>"
 ```
 
 ## Completion Criteria
+- [ ] Requirement source identified (Path A, B, or C)
 - [ ] Impact analysis documented
 - [ ] All changes incremental, tests passing each step
 - [ ] Full verification passes

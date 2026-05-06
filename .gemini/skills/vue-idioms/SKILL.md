@@ -15,15 +15,44 @@ Vue 3 Composition API default. `<script setup>` canonical syntax. Think reactive
 
 Always `<script setup lang="ts">`. Never Options API or class-style for new code.
 
+**Canonical ordering inside `<script setup>`:**
+
 ```vue
-<!-- ✅ Canonical -->
 <script setup lang="ts">
-import { ref, computed } from 'vue';
+// 1. Framework imports
+import { ref, computed, onMounted } from 'vue';
 
-const props = defineProps<{ title: string; count?: number }>();
-const emit = defineEmits<{ 'update:count': [value: number] }>();
+// 2. Third-party imports
+import { useIntersectionObserver } from '@vueuse/core';
 
+// 3. Internal imports — feature-relative paths
+import type { Task } from './types';
+import { useAuth } from '@/composables/useAuth';
+
+// 4. Props & Emits — typed interfaces
+interface Props {
+    title: string;
+    variant?: 'compact' | 'full';
+}
+const props = withDefaults(defineProps<Props>(), { variant: 'full' });
+const emit = defineEmits<{ select: [item: Task]; close: [] }>();
+
+// 5. Composables
+const { user } = useAuth();
+
+// 6. Reactive state
+const isVisible = ref(false);
+
+// 7. Computed
 const doubled = computed(() => (props.count ?? 0) * 2);
+
+// 8. Methods — always named functions (not arrow)
+function handleSelect(item: Task) {
+    emit('select', item);
+}
+
+// 9. Lifecycle (always last before template)
+onMounted(() => { /* setup */ });
 </script>
 
 <!-- ❌ Options API — not for new components -->
@@ -31,6 +60,8 @@ const doubled = computed(() => (props.count ?? 0) * 2);
 export default { props: { title: String }, ... }
 </script>
 ```
+
+**Named functions for methods:** Use `function handleClick()` — not `const handleClick = () =>`. Named functions produce readable stack traces, hoist predictably, and clearly signal "this is an action". Reserve arrow functions for callbacks and inline expressions.
 
 ### Reactivity: `ref` vs `reactive`
 
@@ -66,8 +97,9 @@ const { title } = toRefs(form);
 
 2. **No side effects in computed** — must be pure.
 
-3. **Writable computed for two-way bindings:**
+3. **Writable computed** — escape-hatch for complex two-way bindings only. For standard v-model, use `defineModel()` (see Component Design below):
    ```typescript
+   // Only when defineModel() is insufficient (e.g., cross-store sync)
    const modelValue = computed({
        get: () => props.modelValue,
        set: (val) => emit('update:modelValue', val),
@@ -146,7 +178,7 @@ watch(userId, async (newId, oldId) => {
    ```typescript
    function useCounter(initial = 0) {
        const count = ref(initial);
-       const increment = () => count.value++;
+       function increment() { count.value++; }
        return { count, increment };
    }
    ```
@@ -174,35 +206,64 @@ watch(userId, async (newId, oldId) => {
 
 1. **`defineProps` with TS generics:**
    ```typescript
-   const props = defineProps<{
-       taskId: string;
+   // Omit `const props =` if props are only used in template
+   defineProps<{ title: string; count?: number }>();
+
+   // Use `const props =` only if props are accessed in <script setup>
+   const props = defineProps<{ taskId: string; variant?: 'compact' | 'full' }>();
+   ```
+
+2. **Prop defaults — destructuring (Vue 3.5+) or `withDefaults`:**
+   ```typescript
+   // ✅ Preferred: destructure with defaults (Vue 3.5+)
+   const { title = 'Untitled', variant = 'full' } = defineProps<{
+       title?: string;
        variant?: 'compact' | 'full';
    }>();
 
+   // ✅ Also valid: withDefaults
    const props = withDefaults(defineProps<{ variant?: 'compact' | 'full' }>(), {
        variant: 'full',
    });
    ```
 
-2. **`defineEmits` typed:**
+3. **`defineEmits` typed:**
    ```typescript
    const emit = defineEmits<{
-       'update:modelValue': [value: string];
-       'submit': [task: CreateTaskRequest];
+       submit: [task: CreateTaskRequest];
+       close: [];
    }>();
    ```
 
-3. **v-model contract:** `modelValue` prop + `update:modelValue` emit.
+4. **`defineModel()` for v-model (Vue 3.4+):**
+   ```typescript
+   // ✅ Simple two-way binding — replaces manual modelValue prop + emit
+   const title = defineModel<string>();
 
-4. **`defineExpose`** for selective parent access. Everything private by default.
+   // ✅ With options and modifiers
+   const [title, modifiers] = defineModel<string>({
+       default: 'default value',
+       required: true,
+       get: (value) => value.trim(),
+       set: (value) => modifiers.capitalize
+           ? value.charAt(0).toUpperCase() + value.slice(1) : value,
+   });
 
-5. **`v-bind="$attrs"` + `inheritAttrs: false`** for attribute forwarding.
+   // ✅ Multiple v-model bindings
+   const firstName = defineModel<string>('firstName');
+   const age = defineModel<number>('age');
+   // Usage: <UserForm v-model:first-name="user.firstName" v-model:age="user.age" />
+   ```
 
-6. **One concern per component.** Template over 100 lines -> extract sub-component.
+5. **`defineExpose`** for selective parent access. Everything private by default.
 
-7. **No business logic in template** — computed/composables in `<script setup>`.
+6. **`v-bind="$attrs"` + `inheritAttrs: false`** for attribute forwarding.
 
-### Template Patterns
+7. **One concern per component.** Template over 100 lines -> extract sub-component.
+
+8. **No business logic in template** — computed/composables in `<script setup>`.
+
+### Template Conventions
 
 1. **`:key` with stable unique IDs in `v-for`** — never index when list order changes:
    ```html
@@ -210,6 +271,38 @@ watch(userId, async (newId, oldId) => {
    ```
 
 2. **Never combine `v-if` and `v-for` on same element** — wrap with `<template>`.
+
+3. **Prop shorthand** — when value matches prop name:
+   ```html
+   <!-- ✅ Shorthand -->
+   <MyComponent :count />
+   <!-- ❌ Redundant -->
+   <MyComponent :count="count" />
+   ```
+
+4. **Slot shorthand** — `#` over `v-slot:`:
+   ```html
+   <!-- ✅ -->
+   <template #header>...</template>
+   <template #default>...</template>
+   <!-- ❌ -->
+   <template v-slot:header>...</template>
+   ```
+
+5. **Explicit `<template>` tags for ALL used slots** — never rely on implicit default.
+
+6. **Case conventions:** camelCase in JS (props, emits), kebab-case in templates:
+   ```html
+   <!-- Template: kebab-case -->
+   <UserCard :first-name="name" @update-profile="handleUpdate" />
+   ```
+   ```typescript
+   // Script: camelCase
+   defineProps<{ firstName: string }>();
+   defineEmits<{ updateProfile: [] }>();
+   ```
+
+7. **Component naming direction:** General → Specific — `SearchButtonClear.vue` not `ClearSearchButton.vue`. Mirrors natural language hierarchy.
 
 ### Route Transitions
 
@@ -246,6 +339,47 @@ CSS frameworks with `@layer` (Tailwind v4, Open Props, UnoCSS) can break SPA nav
 4. **Transition parent needs `position: relative`.**
 
 > Diagnosis: Debugging Protocol [Frontend module](file://.gemini/skills/debugging-protocol/languages/frontend.md) § CSS × Animation.
+
+### File-Based Routing
+
+Modern Vue projects use file-based routing where the file/folder structure defines routes. These conventions apply regardless of the specific tool (Unplugin Vue Router, Nuxt, etc.):
+
+1. **Avoid `index.vue`** — use route groups for descriptive names:
+   ```
+   src/pages/
+   ├── (home).vue          # Renders at / — descriptive name
+   ├── about.vue            # Renders at /about
+   ├── [...path].vue        # Catch-all (404)
+   ├── users.vue            # Layout for nested user routes
+   └── users/
+       ├── (user-list).vue  # Renders at /users
+       └── [userId].vue     # Renders at /users/:userId
+   ```
+
+2. **Named params over generic** — `[userId]` not `[id]`, `[postSlug]` not `[slug]`.
+
+3. **Dot notation for flat routes** — `users.edit.vue` → `/users/edit` without nesting.
+
+4. **Route groups for shared layouts** without affecting URL:
+   ```
+   src/pages/
+   ├── (admin).vue          # Layout for admin routes
+   ├── (admin)/
+   │   ├── dashboard.vue    # /dashboard
+   │   └── settings.vue     # /settings
+   ```
+
+5. **Typed route navigation** — prefer named route locations:
+   ```typescript
+   // ✅ Type-safe, refactor-safe
+   router.push({ name: '/users/[userId]', params: { userId } });
+   // ❌ String concatenation — fragile
+   router.push('/users/' + userId);
+   ```
+
+6. **`definePage()`** to customize route properties (meta, name, alias) inline.
+
+7. **Check `typed-router.d.ts`** for available route names and param types.
 
 ### Testing
 

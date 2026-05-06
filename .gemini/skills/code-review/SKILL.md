@@ -157,6 +157,55 @@ State active dimensions at start: "Activating: A, B, C, D, E. Skipping F (no mob
 | F. Mobile | ⏭ Skipped | no mobile app |
 ```
 
+## Architecture Fitness Checks
+
+During code review, assess these architecture health indicators:
+
+### Dependency Direction
+- [ ] Dependencies flow inward (domain ← application ← infrastructure)
+- [ ] No circular dependencies between packages/modules
+- [ ] Infrastructure concerns don't leak into domain layer
+- [ ] Public API surface is minimal (internal packages/modules used)
+
+### Coupling & Cohesion
+| Indicator | Healthy | Unhealthy |
+|---|---|---|
+| Module dependency count | ≤ 5 direct deps | > 10 direct deps |
+| Shotgun surgery frequency | Change touches 1-2 files | Change touches > 5 files |
+| Feature leakage | Feature self-contained in directory | Feature scattered across tree |
+| Interface width | ≤ 5 methods | > 10 methods (break apart) |
+
+### Technical Debt Scoring
+
+When reviewing, tag debt with impact/effort assessment:
+
+| Severity | Impact | Effort | Action |
+|---|---|---|---|
+| **[DEBT-H]** | High risk, blocks features | > 1 day | File as priority backlog item |
+| **[DEBT-M]** | Moderate risk, slows velocity | < 1 day | Fix in current sprint |
+| **[DEBT-L]** | Low risk, cosmetic | < 1 hour | Fix opportunistically |
+
+Include in findings output:
+```markdown
+## Technical Debt
+- [ ] **[DEBT-H]** {description} — Impact: {what it blocks} — [{file}:{line}](file:///path)
+- [ ] **[DEBT-M]** {description} — [{file}:{line}](file:///path)
+```
+
+### Refactoring Opportunity Flags
+
+Flag code smells that indicate refactoring potential (for `@refactoring-specialist`):
+
+| Flag | Trigger | Recommended Refactoring |
+|---|---|---|
+| **[REFACTOR-EXTRACT]** | Function > 30 lines or class > 300 lines | Extract method/class |
+| **[REFACTOR-SIMPLIFY]** | Cyclomatic complexity > 10 | Simplify conditionals, extract strategy |
+| **[REFACTOR-DEDUP]** | >3 instances of similar code | Extract shared function/module |
+| **[REFACTOR-INTERFACE]** | Concrete dependency in constructor | Extract interface for testability |
+| **[REFACTOR-PATTERN]** | Anti-pattern detected | Apply appropriate design pattern |
+
+When refactoring opportunities are found, recommend: `/refactor <specific target>` for the user.
+
 ## Related
 - Rule Priority GEMINI.md § Rule Priority
 - Security Principles GEMINI.md § Security Principles
@@ -164,3 +213,5 @@ State active dimensions at start: "Activating: A, B, C, D, E. Skipping F (no mob
 - Testing Strategy GEMINI.md § Testing Strategy
 - Logging Mandate GEMINI.md § Logging and Observability Mandate
 - Error Handling GEMINI.md § Error Handling Principles
+- Refactoring Patterns @.gemini/skills/refactoring-patterns/SKILL.md (for refactoring execution)
+

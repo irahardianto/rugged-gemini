@@ -101,6 +101,22 @@ Never disable per-file without `// STRICT-DISABLE:` rationale comment.
    // config.retries typed as `3` (literal), not `number`
    ```
 
+8. **`interface` for object shapes, `type` for unions/primitives:**
+   ```typescript
+   // ✅ interface — object shapes, extendable, better error messages
+   interface User {
+       id: string;
+       name: string;
+       role: Role;
+   }
+
+   // ✅ type — unions, intersections, primitives, mapped types
+   type Role = 'admin' | 'editor' | 'viewer';
+   type Nullable<T> = T | null;
+   type EventHandler = (event: Event) => void;
+   ```
+   Why `interface` for shapes: TypeScript surfaces the interface name in error messages (not an expanded inline blob), IDE hover shows the name not the expansion, and declaration merging enables incremental extension. For AI agents specifically, `interface` produces more predictable, scannable type diagnostics.
+
 ### Null Safety
 
 1. **`??` over `||` for defaults** — `??` only falls back for null/undefined, `||` also for 0, '', false.

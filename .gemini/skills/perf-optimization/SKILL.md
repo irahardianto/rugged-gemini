@@ -108,6 +108,77 @@ For advanced: TanStack Query `staleTime`.
 5. Don't disable security for performance.
 6. Don't profile without stable baseline.
 
+## Load Testing Patterns
+
+### Scenario Design
+| Scenario | Purpose | Example |
+|---|---|---|
+| **Smoke** | Verify system functions under minimal load | 1-5 VUs, 1 minute |
+| **Load** | Validate against expected traffic | Target RPS, 15 minutes |
+| **Stress** | Find breaking point | Ramp to 2x-3x expected, observe degradation |
+| **Soak** | Detect memory leaks, resource exhaustion | Normal load, 4-12 hours |
+| **Spike** | Test sudden traffic bursts | 0 → 10x → 0 in seconds |
+
+### Tools
+| Tool | Language | Strength |
+|---|---|---|
+| k6 | JavaScript | Modern, scriptable, CI-friendly |
+| Locust | Python | Pythonic, distributed |
+| wrk | Lua | Ultra-fast HTTP benchmarking |
+| Gatling | Scala | JVM, detailed reports |
+
+### Checklist
+- [ ] Baseline established (steady-state metrics)
+- [ ] Test data realistic (not synthetic stubs)
+- [ ] Warm-up period included
+- [ ] Multiple runs for statistical significance
+- [ ] Results include p50, p95, p99, and max latency
+- [ ] Error rate tracked alongside latency
+
+## Capacity Planning Checklist
+
+1. **Current baseline**: requests/sec, CPU%, memory%, DB connections, queue depth
+2. **Growth model**: expected traffic growth rate (monthly/quarterly)
+3. **Saturation point**: at what load does p99 latency exceed SLA?
+4. **Scaling strategy**: horizontal (add instances) vs vertical (bigger instance)?
+5. **Bottleneck identification**: which resource saturates first? (CPU, memory, I/O, network, DB)
+6. **Cost projection**: cost per 1000 requests at current and projected scale
+7. **Headroom target**: operate at ≤70% capacity (30% buffer for spikes)
+
+## Performance Budget Enforcement
+
+Define per-endpoint or per-page budgets and enforce in CI:
+
+| Metric | Budget | Enforcement |
+|---|---|---|
+| API p99 latency | < 200ms | Load test in CI |
+| Frontend LCP | < 2.5s | Lighthouse CI |
+| Bundle size | < 200KB (gzipped) | Build step check |
+| Startup time (CLI) | < 100ms | Benchmark in CI |
+| Memory per request | < 5MB | Profiling check |
+
+Fail CI if budget exceeded. Track trends over time.
+
+## Benchmark Regression Detection
+
+### Setup
+1. Store benchmark results in version control (JSON/CSV)
+2. Compare against `main` branch baseline on every PR
+3. Flag regressions > 10% as warnings, > 20% as failures
+
+### Workflow
+```
+PR opened → Run benchmarks → Compare vs baseline → Pass/Warn/Fail → Report in PR comment
+```
+
+### Tools
+| Language | Tool | Command |
+|---|---|---|
+| Go | `benchstat` | `benchstat old.txt new.txt` |
+| Rust | `criterion` | Built-in comparison |
+| Python | `pytest-benchmark` | `--benchmark-compare` |
+| Node.js | `benchmark.js` | Custom comparison script |
+
 ## Language Modules
 
 | Module | When |
@@ -123,3 +194,8 @@ For advanced: TanStack Query `staleTime`.
 |---|---|
 | [go-pprof.sh](scripts/go-pprof.sh) | Go pprof CPU/heap → markdown |
 | [frontend-lighthouse.sh](scripts/frontend-lighthouse.sh) | Lighthouse (Core Web Vitals) or bundle analysis |
+
+## Related
+- Performance Optimization Principles @.gemini/skills/performance-optimization-principles/SKILL.md
+- Chaos Testing @.gemini/skills/chaos-testing/SKILL.md (for resilience under load)
+

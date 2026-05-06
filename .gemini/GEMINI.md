@@ -276,6 +276,13 @@ Never commit to git. Use `.env` (local) or Secret Managers (prod — Vault/GSM).
 4. **README** — setup, usage, examples
 5. **Architecture** — system design, component interactions
 
+### AI-Friendly Documentation Lookup
+When researching a library or framework:
+1. **Check for `llms.txt`** at the library's domain first (e.g., `https://router.vuejs.org/llms.txt`, `https://pinia-colada.esm.dev/llms.txt`)
+2. **Follow linked pages** in the `llms.txt` for up-to-date API references
+3. **Never hallucinate or guess documentation URLs** — verify they resolve before citing
+4. **Verify examples** against documentation before using — AI summaries of docs drift
+
 ---
 
 ## Code Idioms and Conventions
@@ -329,12 +336,15 @@ Language-specific layouts in skill files.
 
 | Primitive | Agent Type | Rationale |
 |-----------|-----------|-----------|
-| SCOUT | Any agent (research mode) | Read-only codebase exploration |
+| SCOUT | @scout (general) or domain agent (specialized) | Read-only codebase exploration, research |
 | DESIGN | architect | Architecture decisions, contracts |
 | BUILD | Domain-specific engineer | backend/frontend/mobile per MECE domains |
 | TEST | test-automation-engineer | E2E, integration test infrastructure |
 | REVIEW | qa-analyst + security-engineer + optional ux-reviewer | Quality gates |
 | REMEDIATE | Domain-specific engineer | Matches BUILD agent for the domain |
+| OPTIMIZE | performance-engineer | Profiling, benchmarking, optimization |
+| INCIDENT | incident-responder + domain engineers | Triage, RCA, mitigation, postmortem |
+| REFACTOR | refactoring-specialist | Code smell detection, safe transformation |
 | VERIFY | qa-analyst | Full test suite, lint, type check, build |
 | DOCUMENT | technical-writer | Docs, API docs, changelogs |
 

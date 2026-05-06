@@ -8,6 +8,8 @@
 
 ## Component Structure Convention
 
+> Canonical `<script setup>` ordering rules: `@.gemini/skills/vue-idioms/SKILL.md` § `<script setup>` — Only Style. This section demonstrates the ordering applied in a design-context component.
+
 ```vue
 <script setup lang="ts">
 // 1. Framework imports
