@@ -21,7 +21,7 @@ dev_dependencies:
   riverpod_lint: # latest
 ```
 
-> Scope: Flutter/Dart coding idioms. Layout: `project-structure-flutter-mobile.md`. Tests: `testing-strategy.md`. Error handling: `error-handling-principles.md`.
+> Scope: Flutter/Dart coding idioms. Layout: `@.gemini/skills/project-structure-flutter/SKILL.md`. Tests: GEMINI.md § Testing Strategy. Error handling: GEMINI.md § Error Handling Principles.
 
 ### `const` Constructors — Everywhere
 
@@ -472,7 +472,7 @@ context.push('/tasks/new');
 
 ### Testing
 
-> Naming/pyramid: `testing-strategy.md`. Flutter/Riverpod 3 patterns below.
+> Naming/pyramid: GEMINI.md § Testing Strategy. Flutter/Riverpod 3 patterns below.
 
 #### Unit Test with `ProviderContainer.test`
 
@@ -593,9 +593,9 @@ dart run build_runner watch --delete-conflicting-outputs
 ```
 
 ### Related
-- Code Idioms and Conventions @.gemini/rules/code-idioms-and-conventions.md
-- Project Structure — Flutter Mobile @.gemini/rules/project-structure-flutter-mobile.md
-- Architectural Patterns @.gemini/rules/architectural-pattern.md
-- Testing Strategy @.gemini/rules/testing-strategy.md
-- Error Handling Principles @.gemini/rules/error-handling-principles.md
+- Code Idioms and Conventions GEMINI.md § Code Idioms and Conventions
+- Project Structure — Flutter Mobile @.gemini/skills/project-structure-flutter/SKILL.md
+- Architectural Patterns GEMINI.md § Architectural Patterns
+- Testing Strategy GEMINI.md § Testing Strategy
+- Error Handling Principles GEMINI.md § Error Handling Principles
 - Dependency Management Principles @.gemini/skills/dependency-management-principles/SKILL.md

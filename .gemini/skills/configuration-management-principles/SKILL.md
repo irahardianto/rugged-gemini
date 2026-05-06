@@ -65,6 +65,6 @@ production:
 > Feature flags are a distinct, PRD-gated concern — see @.gemini/skills/feature-flags-principles/SKILL.md.
 
 ### Related
-- Security Mandate @.gemini/rules/security-mandate.md
-- Security Principles @.gemini/rules/security-principles.md
+- Security Mandate GEMINI.md § Security Mandate
+- Security Principles GEMINI.md § Security Principles
 - Feature Flags @.gemini/skills/feature-flags-principles/SKILL.md

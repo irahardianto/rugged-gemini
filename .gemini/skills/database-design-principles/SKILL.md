@@ -39,6 +39,6 @@ Strategy: 1. additive → 2. backfill → 3. update code → 4. drop old in futu
 - [ ] N+1 avoided
 
 ### Related
-- Security Principles @.gemini/rules/security-principles.md
+- Security Principles GEMINI.md § Security Principles
 - Performance @.gemini/skills/performance-optimization-principles/SKILL.md
-- Error Handling @.gemini/rules/error-handling-principles.md
+- Error Handling GEMINI.md § Error Handling Principles

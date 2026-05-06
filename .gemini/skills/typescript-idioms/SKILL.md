@@ -8,7 +8,7 @@ paths:
 
 TS type system = documentation + test + specification. Encode domain invariants so invalid states are unrepresentable. Lean into the compiler.
 
-> Scope: TS-specific type system and language idioms. Vue patterns: `vue-idioms-and-patterns.md`. File layout: `project-structure-vue-frontend.md`. Quality commands: `code-completion-mandate.md`. Logging: `logging-and-observability-principles.md`.
+> Scope: TS-specific type system and language idioms. Vue patterns: `@.gemini/skills/vue-idioms/SKILL.md`. File layout: `@.gemini/skills/project-structure-vue/SKILL.md`. Quality commands: GEMINI.md § Code Completion Mandate. Logging: `@.gemini/skills/logging-and-observability-principles/SKILL.md`.
 
 ### Strict Mode — Non-Negotiable
 
@@ -115,7 +115,7 @@ Never disable per-file without `// STRICT-DISABLE:` rationale comment.
 
 ### Async/Await
 
-> General async: `concurrency-and-threading-mandate.md`. TS-specific below.
+> General async: GEMINI.md § Concurrency and Threading Mandate. TS-specific below.
 
 1. **Always `await` or handle Promises — no floating promises:**
    ```typescript
@@ -206,7 +206,7 @@ Exception: centralized client itself may use raw fetch internally.
 
 ### Testing
 
-> Test naming, file conventions, pyramid: `testing-strategy.md`. TS-specific tooling below.
+> Test naming, file conventions, pyramid: GEMINI.md § Testing Strategy. TS-specific tooling below.
 
 1. **Type mocks with Vitest types — never `as any`:**
    ```typescript
@@ -240,13 +240,13 @@ Exception: centralized client itself may use raw fetch internally.
 | `prettier` | Canonical formatting | Non-negotiable |
 | `npm audit` / `pnpm audit` | Dependency CVE scanning | Fail on high severity |
 
-See `code-completion-mandate.md` for exact commands.
+See GEMINI.md § Code Completion Mandate for exact commands.
 
 ### Related
-- Code Idioms and Conventions @.gemini/rules/code-idioms-and-conventions.md
-- Vue Idioms and Patterns @.gemini/rules/vue-idioms-and-patterns.md
-- Testing Strategy @.gemini/rules/testing-strategy.md
-- Error Handling Principles @.gemini/rules/error-handling-principles.md
-- Concurrency and Threading Mandate @.gemini/rules/concurrency-and-threading-mandate.md
-- Security Principles @.gemini/rules/security-principles.md
+- Code Idioms and Conventions GEMINI.md § Code Idioms and Conventions
+- Vue Idioms and Patterns @.gemini/skills/vue-idioms/SKILL.md
+- Testing Strategy GEMINI.md § Testing Strategy
+- Error Handling Principles GEMINI.md § Error Handling Principles
+- Concurrency and Threading Mandate GEMINI.md § Concurrency and Threading Mandate
+- Security Principles GEMINI.md § Security Principles
 - Dependency Management Principles @.gemini/skills/dependency-management-principles/SKILL.md

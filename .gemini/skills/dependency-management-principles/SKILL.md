@@ -28,5 +28,5 @@ Every dep = liability (security, build time, maintenance). Before adding: "50 li
 - [ ] Unused imports removed
 
 ### Related
-- Security Mandate @.gemini/rules/security-mandate.md
-- Security Principles @.gemini/rules/security-principles.md
+- Security Mandate GEMINI.md § Security Mandate
+- Security Principles GEMINI.md § Security Principles

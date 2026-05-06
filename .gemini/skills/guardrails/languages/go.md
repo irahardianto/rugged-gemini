@@ -66,6 +66,6 @@ defer func() {
 ---
 
 ## References
-- Go Idioms and Patterns @.gemini/rules/go-idioms-and-patterns.md (§ Idiomatic Patterns, § Formatting and Static Analysis)
+- Go Idioms and Patterns @.gemini/skills/go-idioms/SKILL.md (§ Idiomatic Patterns, § Formatting and Static Analysis)
 - Logging and Observability Principles @.gemini/skills/logging-and-observability-principles/SKILL.md (§ Go/slog)
-- Error Handling Principles @.gemini/rules/error-handling-principles.md (§ Resource Cleanup)
+- Error Handling Principles GEMINI.md § Error Handling Principles (§ Resource Cleanup)

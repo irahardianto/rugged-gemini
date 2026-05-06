@@ -335,8 +335,8 @@ User clicks link → Router navigates → Old component should leave → New com
 ---
 
 ## Related Principles
-- Vue Idioms and Patterns @.gemini/rules/vue-idioms-and-patterns.md
-- TypeScript Idioms and Patterns @.gemini/rules/typescript-idioms-and-patterns.md
-- Error Handling Principles @.gemini/rules/error-handling-principles.md
+- Vue Idioms and Patterns @.gemini/skills/vue-idioms/SKILL.md
+- TypeScript Idioms and Patterns @.gemini/skills/typescript-idioms/SKILL.md
+- Error Handling Principles GEMINI.md § Error Handling Principles
 - Logging and Observability Principles @.gemini/skills/logging-and-observability-principles/SKILL.md
-- Testing Strategy @.gemini/rules/testing-strategy.md
+- Testing Strategy GEMINI.md § Testing Strategy

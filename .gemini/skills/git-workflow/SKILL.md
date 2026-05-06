@@ -64,6 +64,6 @@ chore/update-deps
 - [ ] Messages explain WHY
 
 ### Related
-- Code Completion Mandate @.gemini/rules/code-completion-mandate.md
-- Testing Strategy @.gemini/rules/testing-strategy.md
-- Security Mandate @.gemini/rules/security-mandate.md
+- Code Completion Mandate GEMINI.md § Code Completion Mandate
+- Testing Strategy GEMINI.md § Testing Strategy
+- Security Mandate GEMINI.md § Security Mandate

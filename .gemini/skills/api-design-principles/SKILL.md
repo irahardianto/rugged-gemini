@@ -70,8 +70,8 @@ user-invocable: false
 ```
 
 ### Related
-- Error Handling @.gemini/rules/error-handling-principles.md
-- Security Mandate @.gemini/rules/security-mandate.md
-- Security Principles @.gemini/rules/security-principles.md
-- Logging Mandate @.gemini/rules/logging-and-observability-mandate.md
+- Error Handling GEMINI.md § Error Handling Principles
+- Security Mandate GEMINI.md § Security Mandate
+- Security Principles GEMINI.md § Security Principles
+- Logging Mandate GEMINI.md § Logging and Observability Mandate
 - Data Serialization @.gemini/skills/data-serialization-principles/SKILL.md

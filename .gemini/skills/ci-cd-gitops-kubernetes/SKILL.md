@@ -8,7 +8,7 @@ user-invocable: false
 
 ## CI/CD — GitOps and Kubernetes Deployment
 
-> Supplement to `ci-cd-principles.md` (Level 2). Apply only for K8s or K8s-based platforms. Not for Docker Compose or serverless.
+> Supplement to `@.gemini/skills/ci-cd-principles/SKILL.md` (Level 2). Apply only for K8s or K8s-based platforms. Not for Docker Compose or serverless.
 
 ### Strategy Selection
 
@@ -99,6 +99,6 @@ spec:
 
 ### Related
 - CI/CD Principles @.gemini/skills/ci-cd-principles/SKILL.md
-- Security Principles @.gemini/rules/security-principles.md
+- Security Principles GEMINI.md § Security Principles
 - Monitoring @.gemini/skills/monitoring-and-alerting-principles/SKILL.md
 - Feature Flags @.gemini/skills/feature-flags-principles/SKILL.md

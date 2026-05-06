@@ -130,7 +130,7 @@ MIRIFLAGS="-Zmiri-backtrace=full" cargo +nightly miri test
 ---
 
 ## Related Principles
-- Rust Idioms and Patterns @.gemini/rules/rust-idioms-and-patterns.md
-- Error Handling Principles @.gemini/rules/error-handling-principles.md
+- Rust Idioms and Patterns @.gemini/skills/rust-idioms/SKILL.md
+- Error Handling Principles GEMINI.md § Error Handling Principles
 - Concurrency and Threading Principles @.gemini/skills/concurrency-and-threading-principles/SKILL.md
-- Testing Strategy @.gemini/rules/testing-strategy.md
+- Testing Strategy GEMINI.md § Testing Strategy

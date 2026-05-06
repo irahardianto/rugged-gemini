@@ -57,6 +57,6 @@ Baseline: **WCAG 2.1 Level AA**.
 - [ ] ARIA correct (native first)
 
 ### Related
-- Core Design @.gemini/rules/core-design-principles.md
-- Security @.gemini/rules/security-principles.md (XSS)
-- Testing @.gemini/rules/testing-strategy.md (a11y testing)
+- Core Design GEMINI.md § Core Design Principles
+- Security GEMINI.md § Security Principles (XSS)
+- Testing GEMINI.md § Testing Strategy (a11y testing)

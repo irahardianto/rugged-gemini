@@ -50,6 +50,6 @@ Solutions: bounded queues, rate limiting, flow control, circuit breakers, drop/r
 **Ownership (Rust):** compiler-enforced safety, no GC, no manual mgmt. Arc/Rc for shared ownership.
 
 ### Related
-- Concurrency Mandate @.gemini/rules/concurrency-and-threading-mandate.md
+- Concurrency Mandate GEMINI.md § Concurrency and Threading Mandate
 - Concurrency Principles @.gemini/skills/concurrency-and-threading-principles/SKILL.md
-- Error Handling @.gemini/rules/error-handling-principles.md
+- Error Handling GEMINI.md § Error Handling Principles

@@ -7,7 +7,7 @@ paths:
 
 Python rewards explicitness and readability. Follow Zen of Python. If it reads like plain English, it's idiomatic.
 
-> Scope: Python coding idioms. Layout: `project-structure-python-backend.md`. Tests: `testing-strategy.md`. Logging: `logging-and-observability-principles.md`.
+> Scope: Python coding idioms. Layout: `@.gemini/skills/project-structure-python/SKILL.md`. Tests: GEMINI.md § Testing Strategy. Logging: `@.gemini/skills/logging-and-observability-principles/SKILL.md`.
 
 ### Type Hints — Non-Negotiable
 
@@ -52,7 +52,7 @@ def calculate_discount(items: Sequence[Item], coupon: Coupon) -> float: ...
 
 ### Error Handling
 
-> General: `error-handling-principles.md`. Python-specific below.
+> General: GEMINI.md § Error Handling Principles. Python-specific below.
 
 1. **Specific exceptions over `except Exception`:**
    ```python
@@ -146,7 +146,7 @@ def calculate_discount(items: Sequence[Item], coupon: Coupon) -> float: ...
 
 ### Async / Await
 
-> General: `concurrency-and-threading-mandate.md`. Python-specific below.
+> General: GEMINI.md § Concurrency and Threading Mandate. Python-specific below.
 
 1. **One async paradigm, stay consistent.**
 2. **Never blocking I/O in async fn:** use `aiofiles` or executor.
@@ -202,7 +202,7 @@ def calculate_discount(items: Sequence[Item], coupon: Coupon) -> float: ...
 
 ### Testing
 
-> Naming/pyramid: `testing-strategy.md`. Python-specific below.
+> Naming/pyramid: GEMINI.md § Testing Strategy. Python-specific below.
 
 1. **`pytest` only** — never `unittest.TestCase`:
    ```python
@@ -260,7 +260,7 @@ def calculate_discount(items: Sequence[Item], coupon: Coupon) -> float: ...
 
 ### Formatting and Static Analysis
 
-Must pass zero warnings/errors. See `code-completion-mandate.md`.
+Must pass zero warnings/errors. See GEMINI.md § Code Completion Mandate.
 
 | Tool | Purpose | Command |
 |---|---|---|
@@ -287,14 +287,14 @@ python_version = "3.11"
 asyncio_mode = "auto"
 ```
 
-> Never `print()` in production. Use `logging`/`structlog` for structured JSON. See `logging-and-observability-principles.md`.
+> Never `print()` in production. Use `logging`/`structlog` for structured JSON. See `@.gemini/skills/logging-and-observability-principles/SKILL.md`.
 
 ### Related
-- Code Idioms and Conventions @.gemini/rules/code-idioms-and-conventions.md
-- Project Structure — Python Backend @.gemini/rules/project-structure-python-backend.md
-- Testing Strategy @.gemini/rules/testing-strategy.md
-- Error Handling Principles @.gemini/rules/error-handling-principles.md
-- Concurrency and Threading Mandate @.gemini/rules/concurrency-and-threading-mandate.md
+- Code Idioms and Conventions GEMINI.md § Code Idioms and Conventions
+- Project Structure — Python Backend @.gemini/skills/project-structure-python/SKILL.md
+- Testing Strategy GEMINI.md § Testing Strategy
+- Error Handling Principles GEMINI.md § Error Handling Principles
+- Concurrency and Threading Mandate GEMINI.md § Concurrency and Threading Mandate
 - Logging and Observability Principles @.gemini/skills/logging-and-observability-principles/SKILL.md
-- Security Principles @.gemini/rules/security-principles.md
+- Security Principles GEMINI.md § Security Principles
 - Dependency Management Principles @.gemini/skills/dependency-management-principles/SKILL.md

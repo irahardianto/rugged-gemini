@@ -8,7 +8,7 @@ user-invocable: false
 
 ## Logging and Observability Principles
 
-> ⚠️ All operations MUST be logged per Logging and Observability Mandate @.gemini/rules/logging-and-observability-mandate.md.
+> ⚠️ All operations MUST be logged per Logging and Observability Mandate GEMINI.md § Logging and Observability Mandate.
 
 ### Log Levels
 
@@ -178,9 +178,9 @@ logger := slog.New(slog.NewJSONHandler(&buf, nil))
 - [ ] Perf-critical paths use DEBUG
 
 ### Related
-- Logging and Observability Mandate @.gemini/rules/logging-and-observability-mandate.md
+- Logging and Observability Mandate GEMINI.md § Logging and Observability Mandate
 - Monitoring and Alerting Principles @.gemini/skills/monitoring-and-alerting-principles/SKILL.md
-- Error Handling Principles @.gemini/rules/error-handling-principles.md
-- Security Mandate @.gemini/rules/security-mandate.md
-- Security Principles @.gemini/rules/security-principles.md
+- Error Handling Principles GEMINI.md § Error Handling Principles
+- Security Mandate GEMINI.md § Security Mandate
+- Security Principles GEMINI.md § Security Principles
 - API Design Principles @.gemini/skills/api-design-principles/SKILL.md

@@ -160,5 +160,5 @@ crates/pathfinder-search/
 ```
 
 ### Related
-- Project Structure @.gemini/rules/project-structure.md
-- Rust Idioms and Patterns @.gemini/rules/rust-idioms-and-patterns.md
+- Project Structure GEMINI.md § Project Structure
+- Rust Idioms and Patterns @.gemini/skills/rust-idioms/SKILL.md

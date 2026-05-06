@@ -70,10 +70,10 @@ Container(width: 375, height: 812) // iPhone X only!
 ```
 
 ## Compliance
-- Project Structure @.gemini/rules/project-structure.md (Flutter layout)
-- Testing Strategy @.gemini/rules/testing-strategy.md (widget/integration tests)
-- Security Principles @.gemini/rules/security-principles.md (secure storage)
+- Project Structure GEMINI.md § Project Structure (Flutter layout)
+- Testing Strategy GEMINI.md § Testing Strategy (widget/integration tests)
+- Security Principles GEMINI.md § Security Principles (secure storage)
 - Accessibility — load `accessibility-principles` skill
-- Architectural Patterns @.gemini/rules/architectural-pattern.md (Riverpod 3)
+- Architectural Patterns GEMINI.md § Architectural Patterns (Riverpod 3)
 
 Mobile constraints: battery, network variability, one-handed use. Beautiful UI that drains battery or stutters = failure. Every pixel and interaction intentional.

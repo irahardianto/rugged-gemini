@@ -121,5 +121,5 @@ skips = ["B101"]
 ```
 
 ### Related
-- Project Structure @.gemini/rules/project-structure.md
-- Python Idioms and Patterns @.gemini/rules/python-idioms-and-patterns.md
+- Project Structure GEMINI.md § Project Structure
+- Python Idioms and Patterns @.gemini/skills/python-idioms/SKILL.md

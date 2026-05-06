@@ -81,6 +81,6 @@ Flags are temporary. Debt accumulates fast.
 
 ### Related
 - CI/CD @.gemini/skills/ci-cd-principles/SKILL.md
-- Architectural Patterns @.gemini/rules/architectural-pattern.md
-- Core Design @.gemini/rules/core-design-principles.md (YAGNI)
-- Security Mandate @.gemini/rules/security-mandate.md
+- Architectural Patterns GEMINI.md § Architectural Patterns
+- Core Design GEMINI.md § Core Design Principles (YAGNI)
+- Security Mandate GEMINI.md § Security Mandate

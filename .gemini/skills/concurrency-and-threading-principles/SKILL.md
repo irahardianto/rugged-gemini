@@ -47,5 +47,5 @@ Timeouts, retries, circuit breakers. Don't crash app on one thread failure. Supe
 
 ### Related
 - Resources @.gemini/skills/resources-and-memory-management/SKILL.md
-- Error Handling @.gemini/rules/error-handling-principles.md
-- Testing Strategy @.gemini/rules/testing-strategy.md
+- Error Handling GEMINI.md § Error Handling Principles
+- Testing Strategy GEMINI.md § Testing Strategy

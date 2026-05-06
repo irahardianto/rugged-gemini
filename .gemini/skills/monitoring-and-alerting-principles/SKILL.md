@@ -50,8 +50,8 @@ Tool-agnostic: Datadog, LGTM, Sentry, New Relic, CloudWatch — same code patter
 - [ ] Timeouts on all external calls
 
 ### Related
-- Logging Mandate @.gemini/rules/logging-and-observability-mandate.md
+- Logging Mandate GEMINI.md § Logging and Observability Mandate
 - Logging Principles @.gemini/skills/logging-and-observability-principles/SKILL.md
-- Error Handling @.gemini/rules/error-handling-principles.md
+- Error Handling GEMINI.md § Error Handling Principles
 - Resources @.gemini/skills/resources-and-memory-management/SKILL.md
 - Concurrency @.gemini/skills/concurrency-and-threading-principles/SKILL.md

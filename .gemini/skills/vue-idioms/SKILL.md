@@ -9,7 +9,7 @@ paths:
 
 Vue 3 Composition API default. `<script setup>` canonical syntax. Think reactive data flows, not lifecycle hooks. Composables (`use*`) = primary logic reuse unit.
 
-> Scope: Vue 3 coding idioms. TS type system: `typescript-idioms-and-patterns.md`. Layout: `project-structure-vue-frontend.md`. Tests: `testing-strategy.md`. Logging: `logging-and-observability-principles.md`.
+> Scope: Vue 3 coding idioms. TS type system: `@.gemini/skills/typescript-idioms/SKILL.md`. Layout: `@.gemini/skills/project-structure-vue/SKILL.md`. Tests: GEMINI.md § Testing Strategy. Logging: `@.gemini/skills/logging-and-observability-principles/SKILL.md`.
 
 ### `<script setup>` — Only Style
 
@@ -96,7 +96,7 @@ watch(userId, async (newId, oldId) => {
 
 ### Pinia Stores
 
-> Directory structure: `project-structure-vue-frontend.md`. Coding idioms below.
+> Directory structure: `@.gemini/skills/project-structure-vue/SKILL.md`. Coding idioms below.
 
 1. **Setup Store API** (not Options):
    ```typescript
@@ -249,7 +249,7 @@ CSS frameworks with `@layer` (Tailwind v4, Open Props, UnoCSS) can break SPA nav
 
 ### Testing
 
-> Naming/pyramid: `testing-strategy.md`. Vue-specific below.
+> Naming/pyramid: GEMINI.md § Testing Strategy. Vue-specific below.
 
 1. **`createTestingPinia`** for component tests:
    ```typescript
@@ -272,12 +272,12 @@ CSS frameworks with `@layer` (Tailwind v4, Open Props, UnoCSS) can break SPA nav
 | `eslint-plugin-vue` | Vue-specific lint rules |
 | `prettier` | Canonical formatting |
 
-See `code-completion-mandate.md` for exact commands.
+See GEMINI.md § Code Completion Mandate for exact commands.
 
 ### Related
-- Code Idioms and Conventions @.gemini/rules/code-idioms-and-conventions.md
-- TypeScript Idioms and Patterns @.gemini/rules/typescript-idioms-and-patterns.md
-- Project Structure — Vue Frontend @.gemini/rules/project-structure-vue-frontend.md
-- Architectural Patterns @.gemini/rules/architectural-pattern.md
-- Testing Strategy @.gemini/rules/testing-strategy.md
+- Code Idioms and Conventions GEMINI.md § Code Idioms and Conventions
+- TypeScript Idioms and Patterns @.gemini/skills/typescript-idioms/SKILL.md
+- Project Structure — Vue Frontend @.gemini/skills/project-structure-vue/SKILL.md
+- Architectural Patterns GEMINI.md § Architectural Patterns
+- Testing Strategy GEMINI.md § Testing Strategy
 - Logging and Observability Principles @.gemini/skills/logging-and-observability-principles/SKILL.md

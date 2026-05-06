@@ -83,7 +83,7 @@ slog.Info("user login", "userId", userID, "ip", ip)
 ---
 
 ## References
-- Go Idioms and Patterns @.gemini/rules/go-idioms-and-patterns.md
+- Go Idioms and Patterns @.gemini/skills/go-idioms/SKILL.md
 - Logging and Observability Principles @.gemini/skills/logging-and-observability-principles/SKILL.md
-- Error Handling Principles @.gemini/rules/error-handling-principles.md
+- Error Handling Principles GEMINI.md § Error Handling Principles
 - Resources and Memory Management Principles @.gemini/skills/resources-and-memory-management/SKILL.md

@@ -7,7 +7,7 @@ paths:
 
 Rust type system + ownership model = primary correctness tools. Lean into compiler — strongest ally. Idiomatic, safe, expressive.
 
-> Scope: Rust coding idioms. Layout: `project-structure-rust-cargo.md`. Test naming: `testing-strategy.md`. Logging: `logging-and-observability-principles.md`.
+> Scope: Rust coding idioms. Layout: `@.gemini/skills/project-structure-rust/SKILL.md`. Test naming: GEMINI.md § Testing Strategy. Logging: `@.gemini/skills/logging-and-observability-principles/SKILL.md`.
 
 ### Ownership and Borrowing
 
@@ -110,12 +110,12 @@ expect_used = "warn"
 - Prefer well-maintained crates (downloads, last commit, issue tracker).
 
 ### Related
-- Error Handling Principles @.gemini/rules/error-handling-principles.md
+- Error Handling Principles GEMINI.md § Error Handling Principles
 - Concurrency and Threading Principles @.gemini/skills/concurrency-and-threading-principles/SKILL.md
-- Concurrency and Threading Mandate @.gemini/rules/concurrency-and-threading-mandate.md
+- Concurrency and Threading Mandate GEMINI.md § Concurrency and Threading Mandate
 - Performance Optimization Principles @.gemini/skills/performance-optimization-principles/SKILL.md
 - Resource and Memory Management Principles @.gemini/skills/resources-and-memory-management/SKILL.md
-- Security Mandate @.gemini/rules/security-mandate.md
-- Code Idioms and Conventions @.gemini/rules/code-idioms-and-conventions.md
-- Testing Strategy @.gemini/rules/testing-strategy.md
+- Security Mandate GEMINI.md § Security Mandate
+- Code Idioms and Conventions GEMINI.md § Code Idioms and Conventions
+- Testing Strategy GEMINI.md § Testing Strategy
 - Dependency Management Principles @.gemini/skills/dependency-management-principles/SKILL.md

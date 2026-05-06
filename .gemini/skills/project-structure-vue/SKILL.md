@@ -66,6 +66,6 @@ apps/
 Key: `features/` = vertical slices, export via `index.ts`. `components/ui/` = shared dumb UI. `views/` compose features. Feature components inside feature, NOT top-level. Applies to React (.tsx), Vue (.vue), Svelte (.svelte) — swap state mgmt as needed.
 
 ### Related
-- Project Structure @.gemini/rules/project-structure.md
-- Vue Idioms and Patterns @.gemini/rules/vue-idioms-and-patterns.md
-- TypeScript Idioms and Patterns @.gemini/rules/typescript-idioms-and-patterns.md
+- Project Structure GEMINI.md § Project Structure
+- Vue Idioms and Patterns @.gemini/skills/vue-idioms/SKILL.md
+- TypeScript Idioms and Patterns @.gemini/skills/typescript-idioms/SKILL.md

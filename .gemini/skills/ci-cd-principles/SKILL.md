@@ -223,11 +223,11 @@ Do NOT implement unless PRD/arch requires. See @.gemini/skills/feature-flags-pri
 - See @.gemini/skills/ci-cd-gitops-kubernetes/SKILL.md
 
 ### Related
-- Code Completion Mandate @.gemini/rules/code-completion-mandate.md
-- Security Mandate @.gemini/rules/security-mandate.md
-- Security Principles @.gemini/rules/security-principles.md
+- Code Completion Mandate GEMINI.md § Code Completion Mandate
+- Security Mandate GEMINI.md § Security Mandate
+- Security Principles GEMINI.md § Security Principles
 - Git Workflow @.gemini/skills/git-workflow/SKILL.md
-- Project Structure @.gemini/rules/project-structure.md
-- Testing Strategy @.gemini/rules/testing-strategy.md
+- Project Structure GEMINI.md § Project Structure
+- Testing Strategy GEMINI.md § Testing Strategy
 - GitOps + K8s @.gemini/skills/ci-cd-gitops-kubernetes/SKILL.md
 - Feature Flags @.gemini/skills/feature-flags-principles/SKILL.md

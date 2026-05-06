@@ -40,5 +40,5 @@ apps/
 Key: `cmd/` = entry points (separate binaries). `internal/` = private packages. Tests co-located (`_test.go`). Single `go.mod` at root.
 
 ### Related
-- Project Structure @.gemini/rules/project-structure.md
-- Go Idioms and Patterns @.gemini/rules/go-idioms-and-patterns.md
+- Project Structure GEMINI.md § Project Structure
+- Go Idioms and Patterns @.gemini/skills/go-idioms/SKILL.md

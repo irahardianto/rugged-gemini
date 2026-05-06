@@ -33,7 +33,7 @@ Default UTF-8 everywhere. Specify explicitly when reading/writing. Handle errors
 - Python pickle: NEVER deserialize untrusted data
 
 ### Related
-- Error Handling @.gemini/rules/error-handling-principles.md
-- Security Mandate @.gemini/rules/security-mandate.md
-- Security Principles @.gemini/rules/security-principles.md
+- Error Handling GEMINI.md § Error Handling Principles
+- Security Mandate GEMINI.md § Security Mandate
+- Security Principles GEMINI.md § Security Principles
 - API Design @.gemini/skills/api-design-principles/SKILL.md

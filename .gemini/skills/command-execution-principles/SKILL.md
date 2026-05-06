@@ -33,5 +33,5 @@ user-invocable: false
 - [ ] stderr captured + logged
 
 ### Related
-- Security Mandate @.gemini/rules/security-mandate.md
-- Security Principles @.gemini/rules/security-principles.md
+- Security Mandate GEMINI.md § Security Mandate
+- Security Principles GEMINI.md § Security Principles

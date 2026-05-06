@@ -7,7 +7,7 @@ paths:
 
 Go favors simplicity, explicitness, readability. Intentionally small language — resist importing patterns from other languages. Boring and obvious = idiomatic.
 
-> Scope: Go-specific coding idioms. File layout: `project-structure-go-backend.md`. Test naming: `testing-strategy.md`. Logging: `logging-and-observability-principles.md`.
+> Scope: Go-specific coding idioms. File layout: `@.gemini/skills/project-structure-go/SKILL.md`. Test naming: GEMINI.md § Testing Strategy. Logging: `@.gemini/skills/logging-and-observability-principles/SKILL.md`.
 
 ### Error Handling
 
@@ -81,7 +81,7 @@ Go favors simplicity, explicitness, readability. Intentionally small language �
 
 ### Goroutines and Channels
 
-> General concurrency: `concurrency-and-threading-principles.md`. Go-specific mechanics below.
+> General concurrency: `@.gemini/skills/concurrency-and-threading-principles/SKILL.md`. Go-specific mechanics below.
 
 1. **Always pass `context.Context` first:**
    ```go
@@ -192,7 +192,7 @@ Go favors simplicity, explicitness, readability. Intentionally small language �
 
 ### Testing
 
-> Test naming, pyramid: `testing-strategy.md`. Go-specific tooling below.
+> Test naming, pyramid: GEMINI.md § Testing Strategy. Go-specific tooling below.
 
 1. **Table-driven tests (default):**
    ```go
@@ -227,7 +227,7 @@ Go favors simplicity, explicitness, readability. Intentionally small language �
 
 ### Formatting and Static Analysis
 
-Must pass zero warnings/errors before commit. See `code-completion-mandate.md`.
+Must pass zero warnings/errors before commit. See GEMINI.md § Code Completion Mandate.
 
 | Tool | Purpose | Command |
 |---|---|---|
@@ -243,13 +243,13 @@ Must pass zero warnings/errors before commit. See `code-completion-mandate.md`.
 - Other `//nolint:` require rationale comment AND code review approval.
 - Dev iteration: `go vet ./...` for type-checking; reserve `golangci-lint` for pre-commit.
 
-> Never `fmt.Println`/`log.Printf` in production. Use `log/slog` (Go 1.21+) or project adapter. See `logging-and-observability-principles.md`.
+> Never `fmt.Println`/`log.Printf` in production. Use `log/slog` (Go 1.21+) or project adapter. See `@.gemini/skills/logging-and-observability-principles/SKILL.md`.
 
 ### Related
-- Code Idioms and Conventions @.gemini/rules/code-idioms-and-conventions.md
-- Project Structure — Go Backend @.gemini/rules/project-structure-go-backend.md
-- Testing Strategy @.gemini/rules/testing-strategy.md
-- Error Handling Principles @.gemini/rules/error-handling-principles.md
+- Code Idioms and Conventions GEMINI.md § Code Idioms and Conventions
+- Project Structure — Go Backend @.gemini/skills/project-structure-go/SKILL.md
+- Testing Strategy GEMINI.md § Testing Strategy
+- Error Handling Principles GEMINI.md § Error Handling Principles
 - Concurrency and Threading Principles @.gemini/skills/concurrency-and-threading-principles/SKILL.md
 - Logging and Observability Principles @.gemini/skills/logging-and-observability-principles/SKILL.md
 - Dependency Management Principles @.gemini/skills/dependency-management-principles/SKILL.md

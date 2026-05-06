@@ -75,6 +75,6 @@ We chose **Option X** because...
 5. Use `sequential-thinking` for complex trade-offs
 
 ## Compliance
-- Architectural Patterns @.gemini/rules/architectural-pattern.md
-- Core Design @.gemini/rules/core-design-principles.md
-- Project Structure @.gemini/rules/project-structure.md
+- Architectural Patterns GEMINI.md § Architectural Patterns
+- Core Design GEMINI.md § Core Design Principles
+- Project Structure GEMINI.md § Project Structure

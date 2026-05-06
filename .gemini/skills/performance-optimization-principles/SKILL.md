@@ -50,5 +50,5 @@ Costs: runtime (indirection, virtual dispatch), cognitive (layers), maintenance 
 
 ### Related
 - Resources @.gemini/skills/resources-and-memory-management/SKILL.md
-- Concurrency Mandate @.gemini/rules/concurrency-and-threading-mandate.md
+- Concurrency Mandate GEMINI.md § Concurrency and Threading Mandate
 - Concurrency Principles @.gemini/skills/concurrency-and-threading-principles/SKILL.md

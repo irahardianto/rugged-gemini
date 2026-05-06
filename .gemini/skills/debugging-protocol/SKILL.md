@@ -50,6 +50,6 @@ Load from `languages/` for language-specific tools, hypothesis categories, valid
 | [Frontend](languages/frontend.md) | Vue 3, React, browser, Vite |
 
 ## Compliance
-- Error Handling @.gemini/rules/error-handling-principles.md
+- Error Handling GEMINI.md § Error Handling Principles
 - Logging — load `logging-and-observability-principles` skill
-- Testing Strategy @.gemini/rules/testing-strategy.md (regression test for fix)
+- Testing Strategy GEMINI.md § Testing Strategy (regression test for fix)

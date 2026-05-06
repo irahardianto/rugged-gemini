@@ -81,5 +81,5 @@ apps/
 Key differences from web: `screens/` = views, `widgets/` = components, `state/` = Riverpod 3, `repository/` = data + cache. `ProviderScope` at root for DI (no manual locator). `*.g.dart`/`*.freezed.dart` = codegen artifacts. Tests in `test/` mirroring `lib/` (Flutter convention). Naming: `*_test.dart` (unit), `*_integration_test.dart` (integration).
 
 ### Related
-- Project Structure @.gemini/rules/project-structure.md
-- Flutter Idioms and Patterns @.gemini/rules/flutter-idioms-and-patterns.md
+- Project Structure GEMINI.md § Project Structure
+- Flutter Idioms and Patterns @.gemini/skills/flutter-idioms/SKILL.md
