@@ -23,7 +23,7 @@ Systematically review against full rule set. Catches what linters miss: arch vio
 - Full audit — all features
 
 ### 2. Load Rules
-Read from `.gemini/rules/`. Use `rule-priority.md` for severity.
+Apply rules from `GEMINI.md`. Use Rule Priority (§ Rule Priority) for severity.
 
 ### 3. Categories (Priority Order)
 
@@ -82,17 +82,17 @@ Standalone: saving recommended but optional.
 
 | Tag | Category | Source |
 |---|---|---|
-| [SEC] | Security | security-principles.md |
-| [DATA] | Data integrity | error-handling-principles.md |
-| [RES] | Resource leak | resources-and-memory-management |
-| [TEST] | Testability | architectural-pattern.md, testing-strategy.md |
-| [OBS] | Observability | logging-and-observability-mandate.md |
-| [ERR] | Error handling | error-handling-principles.md |
-| [ARCH] | Architecture | architectural-pattern.md, project-structure.md |
-| [PAT] | Pattern consistency | code-organization-principles.md |
-| [INT] | Integration contract | api-design-principles |
-| [DB] | Database design | database-design-principles |
-| [CFG] | Configuration | configuration-management-principles |
+| [SEC] | Security | GEMINI.md § Security Principles |
+| [DATA] | Data integrity | GEMINI.md § Error Handling Principles |
+| [RES] | Resource leak | @.gemini/skills/resources-and-memory-management/SKILL.md |
+| [TEST] | Testability | GEMINI.md § Architectural Patterns, § Testing Strategy |
+| [OBS] | Observability | GEMINI.md § Logging and Observability Mandate |
+| [ERR] | Error handling | GEMINI.md § Error Handling Principles |
+| [ARCH] | Architecture | GEMINI.md § Architectural Patterns, § Project Structure |
+| [PAT] | Pattern consistency | GEMINI.md § Code Organization Principles |
+| [INT] | Integration contract | @.gemini/skills/api-design-principles/SKILL.md |
+| [DB] | Database design | @.gemini/skills/database-design-principles/SKILL.md |
+| [CFG] | Configuration | @.gemini/skills/configuration-management-principles/SKILL.md |
 
 ### 7. Language Anti-Patterns
 
@@ -158,9 +158,9 @@ State active dimensions at start: "Activating: A, B, C, D, E. Skipping F (no mob
 ```
 
 ## Related
-- Rule Priority @.gemini/rules/rule-priority.md
-- Security Principles @.gemini/rules/security-principles.md
-- Architectural Patterns @.gemini/rules/architectural-pattern.md
-- Testing Strategy @.gemini/rules/testing-strategy.md
-- Logging Mandate @.gemini/rules/logging-and-observability-mandate.md
-- Error Handling @.gemini/rules/error-handling-principles.md
+- Rule Priority GEMINI.md § Rule Priority
+- Security Principles GEMINI.md § Security Principles
+- Architectural Patterns GEMINI.md § Architectural Patterns
+- Testing Strategy GEMINI.md § Testing Strategy
+- Logging Mandate GEMINI.md § Logging and Observability Mandate
+- Error Handling GEMINI.md § Error Handling Principles

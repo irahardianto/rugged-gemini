@@ -13,12 +13,12 @@ description: >-
 
 ## Pre-Flight
 
-- [ ] Identified applicable rules from `.gemini/rules/`
-- [ ] Searched for existing patterns (Pattern Discovery, `architectural-pattern.md`)
-- [ ] Project structure aligned (`project-structure.md`)
+- [ ] Identified applicable rules from `GEMINI.md`
+- [ ] Searched for existing patterns (Pattern Discovery — GEMINI.md § Architectural Patterns)
+- [ ] Project structure aligned (GEMINI.md § Project Structure)
 - [ ] I/O boundaries identified for abstraction
 - [ ] Test strategy determined (unit/integration/E2E)
-- [ ] Reviewed `rule-priority.md` for conflicts
+- [ ] Reviewed GEMINI.md § Rule Priority for conflicts
 
 Any item unchecked → STOP and resolve.
 
@@ -54,7 +54,7 @@ Any item unchecked → STOP and resolve.
 **Consistency:**
 - [ ] Follows codebase patterns (>80%)
 - [ ] Naming conventions match
-- [ ] File org matches project-structure.md
+- [ ] File org matches GEMINI.md § Project Structure
 
 ## Language-Specific
 
@@ -69,6 +69,6 @@ Load only for active languages. Missing file → flag for creation.
 
 ## Compliance
 - All mandates (always-on rules)
-- Architectural Patterns @.gemini/rules/architectural-pattern.md
-- Testing Strategy @.gemini/rules/testing-strategy.md
-- Rule Priority @.gemini/rules/rule-priority.md
+- Architectural Patterns GEMINI.md § Architectural Patterns
+- Testing Strategy GEMINI.md § Testing Strategy
+- Rule Priority GEMINI.md § Rule Priority
