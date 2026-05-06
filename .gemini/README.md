@@ -1,6 +1,6 @@
-# geminicli-minimal
+# Rugged Gemini — Internal Documentation
 
-Ported from `claude-minimal`. Same engineering excellence, adapted for [Gemini CLI](https://github.com/google-gemini/gemini-cli).
+Originally adapted from [Awesome AGV](https://github.com/irahardianto/awesome-agv). Purpose-built for [Gemini CLI](https://github.com/google-gemini/gemini-cli).
 
 ## Installation
 
@@ -8,7 +8,7 @@ Copy this directory's contents into your project's `.gemini/` directory:
 
 ```bash
 # From your project root
-cp -r path/to/geminicli-minimal/* .gemini/
+cp -r path/to/rugged-gemini/* .gemini/
 # Also copy GEMINI.md to project root (auto-loaded by Gemini CLI)
 cp .gemini/GEMINI.md ./GEMINI.md
 ```
@@ -27,7 +27,7 @@ cp .gemini/GEMINI.md ./GEMINI.md
 
 ### Core System
 - **`GEMINI.md`** — All engineering rules consolidated (security, rugged software, testability, SOLID, testing, logging, pathfinder routing). Auto-loaded every session.
-- **`settings.json`** — MCP servers (Pathfinder, Playwright, Supabase, Cloud Run), auto-edit approval mode, checkpointing.
+- **`settings.json`** — MCP servers (Pathfinder, Playwright). Update commands to match your local installations.
 
 ### 11 Specialized Agents
 | Agent | Role | Access |
@@ -53,17 +53,15 @@ Invoke with `@agent-name` in Gemini CLI.
 ### 38 Skills
 Language idioms (Go, TS, Vue, Flutter, Rust, Python), project structures, debugging protocols, code review checklists, performance optimization, CI/CD, accessibility, and more.
 
-## Key Differences from Claude-Code Version
+## Architecture Decisions
 
-| Aspect | claude-minimal | geminicli-minimal |
+| Decision | Choice | Rationale |
 |---|---|---|
-| Rules location | `rules/*.md` (28 separate files) | `GEMINI.md` (single consolidated file) |
-| Commands format | `.md` (markdown) | `.toml` (Gemini CLI native) |
-| Agent frontmatter | Claude YAML schema | Gemini `kind: local` + `tools:` allowlist |
-| Tool isolation | `disallowedTools:` (blocklist) | `tools:` (allowlist) |
-| Lang-specific rules | `rules/` directory | `skills/` directory (on-demand loading) |
-| MCP config | `settings.local.json` | `settings.json` |
-| Context loading | Implicit (Claude auto-loads rules/) | Explicit (`GEMINI.md` at project root) |
+| Rules location | `GEMINI.md` (single file) | Auto-loaded every session; zero setup overhead |
+| Commands format | `.toml` | Gemini CLI native format |
+| Agent tool access | `tools:` allowlist | Explicit grants over implicit denials |
+| Lang-specific rules | `skills/` (on-demand) | Reduces context noise; loaded only when relevant |
+| MCP config | `settings.json` | Gemini CLI standard location |
 
 ## MCP Server Notes
 

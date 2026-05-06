@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="banner.png" alt="Awesome AGV" width="800" />
+  <img src="banner.png" alt="Rugged Gemini" width="800" />
   <h3 align="center">Rugged Gemini</h3>
 
   <p align="center">
@@ -174,7 +174,7 @@ SCOUT → DESIGN → BUILD → TEST → REVIEW → VERIFY → DOCUMENT
 .gemini/
 ├── GEMINI.md              # Consolidated engineering rules (auto-loaded)
 ├── README.md              # Internal documentation
-├── settings.json          # MCP servers, approval mode, checkpointing
+├── settings.json          # MCP server configurations (Pathfinder, Playwright)
 ├── agents/                # 11 specialized agent personas
 │   ├── architect.md
 │   ├── backend-engineer.md
