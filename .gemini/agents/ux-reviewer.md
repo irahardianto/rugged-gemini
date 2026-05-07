@@ -39,3 +39,11 @@ No production code (review and advise only). No backend. No database. No CI/CD. 
 - Touch targets minimum 44x44px (mobile)
 - Color contrast meets WCAG AA minimum
 - Consistent spacing/typography per design system
+
+## Parallel Dispatch
+When dispatched as one of N instances via `@ux-reviewer[scope]`:
+- **Scope Axis**: UI area or feature flow (e.g., `[auth-ux]`, `[task-ux]`, `[navigation]`, `[onboarding]`)
+- **Read Scope**: MECE partition of UI under review
+- **Output**: Separate design findings document per scope with severity + visual references
+- **MECE Coverage**: Union of all ux-reviewer scopes covers 100% of UI surface
+- **No Write Conflicts**: Read-only agent — scoping is for coverage guarantee, not conflict prevention

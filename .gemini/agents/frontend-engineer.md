@@ -40,3 +40,11 @@ No backend code. No mobile code. No database queries. No CI/CD. No security audi
 - Runtime validation at boundaries (Zod)
 - No business logic in templates
 - Responsive + accessible by default
+
+## Parallel Dispatch
+When dispatched as one of N instances via `@frontend-engineer[scope]`:
+- **Scope Axis**: Feature or page slice (e.g., `[auth-ui]`, `[task-ui]`, `[settings]`, `[dashboard]`)
+- **Write Scope**: Feature directory for the scoped slice (e.g., `features/<scope>/**` or `pages/<scope>/**`)
+- **Shared Reads**: Design tokens, shared components, types, API client (read-only, produced by DESIGN phase)
+- **Constraint**: Each instance writes exclusively within its feature/page directory; no cross-feature file modifications
+- **Integration**: A final `@frontend-engineer[integration]` instance wires feature routes into router, updates App shell, and registers global providers

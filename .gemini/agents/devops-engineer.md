@@ -39,3 +39,11 @@ No application code. No database schemas. No frontend/mobile. No security audits
 - Secrets via secret manager (never in code/env files)
 - Multi-stage Docker builds (minimal production images)
 - Rollback tested and documented
+
+## Parallel Dispatch
+When dispatched as one of N instances via `@devops-engineer[scope]`:
+- **Scope Axis**: Pipeline or infrastructure component (e.g., `[ci-pipeline]`, `[monitoring]`, `[iac]`, `[containerization]`)
+- **Write Scope**: Infrastructure files for the scoped component (e.g., CI config, Terraform modules, Docker configs)
+- **Shared Reads**: Application configs, environment templates, secrets references (read-only)
+- **Constraint**: Each instance writes exclusively within its infra component; no cross-component file modifications
+- **Integration**: A final `@devops-engineer[integration]` instance validates end-to-end pipeline and cross-component wiring

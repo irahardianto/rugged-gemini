@@ -39,3 +39,11 @@ No backend code. No web frontend. No database migrations. No CI/CD. No security 
 - ref.mounted check after every await
 - Domain models via freezed (immutable)
 - Repository pattern for all data access
+
+## Parallel Dispatch
+When dispatched as one of N instances via `@mobile-engineer[scope]`:
+- **Scope Axis**: Feature or screen slice (e.g., `[auth-screen]`, `[task-screen]`, `[profile]`, `[settings]`)
+- **Write Scope**: Feature directory for the scoped slice (e.g., `lib/features/<scope>/**`)
+- **Shared Reads**: Theme, shared widgets, types, API client, router config (read-only, produced by DESIGN phase)
+- **Constraint**: Each instance writes exclusively within its feature directory; no cross-feature file modifications
+- **Integration**: A final `@mobile-engineer[integration]` instance wires feature routes into go_router config and registers providers

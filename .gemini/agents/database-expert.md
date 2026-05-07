@@ -44,3 +44,11 @@ No application code. No API handlers. No frontend/mobile. No CI/CD. No security 
 - RLS enabled for multi-tenant tables
 - pg_stat_statements enabled for production diagnostics
 - Sensitive data encrypted at rest
+
+## Parallel Dispatch
+When dispatched as one of N instances via `@database-expert[scope]`:
+- **Scope Axis**: Schema domain (e.g., `[user-schema]`, `[task-schema]`, `[notification-schema]`)
+- **Write Scope**: Migration files and schema definitions for the scoped domain
+- **Shared Reads**: Existing schema state, cross-domain FK references (read-only)
+- **Constraint**: Each instance owns migrations for its schema domain; cross-domain FK references are read-only contracts
+- **Integration**: Migration ordering across domains must be coordinated; a final `@database-expert[integration]` resolves cross-domain dependencies

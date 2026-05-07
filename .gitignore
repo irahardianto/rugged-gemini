@@ -7,3 +7,6 @@ Thumbs.db
 .idea/
 *.swp
 *.swo
+
+# Git worktrees (parallel agent dispatch)
+.wt/

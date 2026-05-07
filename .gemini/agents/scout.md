@@ -48,3 +48,11 @@ Each finding includes:
 - Findings structured for consumption by other agents
 - Research logs persisted in `docs/research_logs/`
 - ADR recommended when research reveals choice between 2+ approaches
+
+## Parallel Dispatch
+When dispatched as one of N instances via `@scout[scope]`:
+- **Scope Axis**: Investigation area (feature, subsystem, technology)
+- **Read Scope**: MECE partition of investigation space (e.g., `[auth]`, `[tasks]`, `[notifications]`)
+- **Output**: Separate research document per scope, structured for downstream agent consumption
+- **MECE Coverage**: Union of all scout scopes covers 100% of investigation space
+- **No Write Conflicts**: Read-only agent — scoping is for coverage guarantee, not conflict prevention

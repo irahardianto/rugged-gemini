@@ -95,6 +95,78 @@ Author: {name}
 - **Action items are SMART** — specific, measurable, assigned, realistic, time-bound
 - **Share learnings** — postmortems are public within the organization
 
+## Pre-Mortem Analysis
+
+Proactive failure analysis: imagine the feature has already failed, then work backward to identify why.
+
+### When to Invoke
+- After DESIGN phase, before BUILD (in feature pipelines)
+- For high-risk features (auth, payments, data migrations, public API changes)
+- When requested as standalone risk assessment (Template L)
+
+### Pre-Mortem Protocol
+
+#### Step 1: Assume Failure
+The feature has launched and failed catastrophically. Work backward:
+- "The auth system was bypassed" — how?
+- "Data was corrupted during migration" — what went wrong?
+- "The service went down under load" — where was the bottleneck?
+
+#### Step 2: Failure Mode Identification
+For each component in the DESIGN output, enumerate:
+1. **What could break?** — specific failure scenarios, not vague risks
+2. **How likely?** — based on complexity, blast radius, novelty
+3. **How severe?** — data loss, security breach, downtime, degraded UX
+
+#### Step 3: Cross-Domain Risk Assessment
+Each specialist brings a unique failure lens:
+
+| Agent | Risk Domain | Example Findings |
+|-------|------------|-----------------|
+| incident-responder | Operational failures, cascade risks, recovery gaps | "No rollback path for schema migration" |
+| security-engineer | Threat model, attack vectors, auth bypass | "JWT validation missing on webhook endpoint" |
+| performance-engineer | Scalability limits, resource exhaustion | "Unbounded query on user list with no pagination" |
+| database-expert | Data integrity, migration reversibility, concurrency | "Non-idempotent migration with no down script" |
+
+Include agents based on feature risk profile:
+- **Always**: incident-responder (anchor)
+- **Auth/security-sensitive**: + security-engineer
+- **High-traffic/scalable**: + performance-engineer
+- **Data-heavy/migration**: + database-expert
+
+#### Step 4: Produce Findings
+
+```markdown
+# Pre-Mortem: {feature name}
+Date: {date}
+Analysts: {agent list}
+
+## Risk Assessment Summary
+| Risk | Severity | Likelihood | Mitigation |
+|------|----------|-----------|------------|
+| {failure scenario} | Critical/High/Medium/Low | High/Medium/Low | {recommendation} |
+
+## Failure Modes
+### {failure scenario title}
+- **Trigger**: {what causes this failure}
+- **Blast Radius**: {what else breaks}
+- **Detection**: {how would we know — monitoring, alerts, logs}
+- **Recovery**: {rollback path, data recovery, feature flags}
+- **Mitigation**: {what BUILD agents should do to prevent this}
+
+## Monitoring Gaps
+- {gap}: {recommendation for devops-engineer}
+
+## Design Revision Recommendations
+- {if any DESIGN changes are needed before BUILD proceeds}
+```
+
+### Pre-Mortem Decision Flow
+- Findings are **advisory** — BUILD proceeds with risk-aware context
+- If any finding is **Critical severity + High likelihood** → escalate to user before BUILD
+- Monitoring gap findings → forwarded to devops-engineer during or after BUILD
+- Design revision recommendations → returned to architect for contract updates before BUILD
+
 ## Related
 - Debugging Protocol @.gemini/skills/debugging-protocol/SKILL.md
 - Logging and Observability Principles @.gemini/skills/logging-and-observability-principles/SKILL.md

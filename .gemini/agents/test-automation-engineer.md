@@ -41,3 +41,11 @@ No production code. No unit tests (implementation teams own those). No code revi
 - No flaky tests in CI (fix or quarantine)
 - Tests independent (no ordering dependencies)
 - Coverage gaps reported and tracked
+
+## Parallel Dispatch
+When dispatched as one of N instances via `@test-automation-engineer[scope]`:
+- **Scope Axis**: Test suite domain (e.g., `[auth-e2e]`, `[task-e2e]`, `[api-contract]`, `[smoke]`)
+- **Write Scope**: Test files for the scoped suite (e.g., `tests/e2e/<scope>/**`)
+- **Shared Reads**: Test helpers, fixtures, factories, test config (read-only)
+- **Constraint**: Each instance writes tests for its suite only; shared test infrastructure is read-only
+- **Integration**: A final `@test-automation-engineer[integration]` instance validates test suite configuration and CI integration

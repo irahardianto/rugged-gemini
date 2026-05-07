@@ -62,3 +62,11 @@ Each finding includes:
 - Anti-pattern detection (hardcoded magic values, string concatenation in queries)
 - Every review finding has a fix recommendation
 - Blocker = must fix before merge
+
+## Parallel Dispatch
+When dispatched as one of N instances via `@qa-analyst[scope]`:
+- **Scope Axis**: Review dimension or feature scope (e.g., `[auth-review]`, `[task-review]`, `[security-dim]`, `[test-coverage]`)
+- **Read Scope**: MECE partition of code under review (e.g., `features/<scope>/**` or by review dimension)
+- **Output**: Separate findings document per scope with severity-tagged issues
+- **MECE Coverage**: Union of all qa-analyst scopes covers 100% of code under review
+- **No Write Conflicts**: Read-only agent — scoping is for coverage guarantee, not conflict prevention

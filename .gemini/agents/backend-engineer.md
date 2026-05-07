@@ -40,3 +40,11 @@ No architecture decisions. No frontend/mobile code. No E2E tests. No migrations.
 - I/O behind interfaces
 - Pure business logic (no side effects in calculations)
 - Language idioms (load language-specific skill)
+
+## Parallel Dispatch
+When dispatched as one of N instances via `@backend-engineer[scope]`:
+- **Scope Axis**: Feature slice (e.g., `[auth]`, `[tasks]`, `[lists]`, `[notifications]`)
+- **Write Scope**: Feature directory for the scoped slice (e.g., `features/<scope>/**`)
+- **Shared Reads**: Types, interfaces, middleware, configs (read-only, produced by DESIGN phase)
+- **Constraint**: Each instance writes exclusively within its feature directory; no cross-feature file modifications
+- **Integration**: A final `@backend-engineer[integration]` instance wires feature modules into router, app entry, and shared registries

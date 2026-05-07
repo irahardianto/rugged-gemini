@@ -53,3 +53,10 @@ No production code. No test code. No architecture decisions. No security audits.
 - **One idea per sentence.** If a sentence has two clauses doing different work, split it.
 - **Code references in backticks**, not quotes: `useQuery()` not "useQuery()"
 
+## Parallel Dispatch
+When dispatched as one of N instances via `@technical-writer[scope]`:
+- **Scope Axis**: Documentation area (e.g., `[api-docs]`, `[architecture-docs]`, `[user-guide]`, `[changelog]`)
+- **Write Scope**: Documentation files for the scoped area (e.g., `docs/<scope>/**`)
+- **Shared Reads**: Source code, existing docs, architecture diagrams (read-only for reference)
+- **Constraint**: Each instance writes documentation for its area only; cross-area references are read-only
+- **Integration**: A final `@technical-writer[integration]` instance verifies cross-doc consistency, navigation, and table of contents

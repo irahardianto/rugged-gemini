@@ -72,11 +72,27 @@ For automated versioning and changelog generation:
 
 ### Worktree Best Practices
 When orchestrator uses git worktrees for parallel agent execution:
-- **Naming**: `.wt/<agent-name>` — consistent prefix for cleanup
-- **Branch naming**: `wt/<agent-name>-<timestamp>` — unique per dispatch
+
+#### Single-Instance Dispatch
+- **Directory**: `.wt/<agent-name>` — consistent prefix for cleanup
+- **Branch**: `wt/<agent-name>-<timestamp>` — unique per dispatch
+
+#### Multi-Instance (Scoped) Dispatch
+- **Directory**: `.wt/<agent-name>-<scope>` — scope qualifier from scope card
+- **Branch**: `wt/<agent-name>-<scope>-<timestamp>` — unique per scoped dispatch
+- **Examples**: `.wt/backend-engineer-auth`, `.wt/backend-engineer-tasks`, `.wt/scout-infra`
+
+#### Merge Ordering
+- **Dependency order first**: merge nodes that downstream nodes depend on before their dependents
+- **Smallest diff first**: for independent nodes, merge smaller changes first (less conflict surface)
+- **Integration sub-tasks last**: `@<agent>[integration]` branches always merge after all feature branches
+
+#### General Rules
 - **Cleanup**: always remove worktree + branch after merge
 - **Conflict resolution**: merge sequentially, resolve conflicts before next merge
 - **Never commit directly to main from worktree** — always squash merge
+- **Quality gate between merges**: run Code Completion Mandate checks after each merge
+- Full merge protocol: see `parallel-dispatch-merge` skill
 
 ### Checklist
 - [ ] Branch named with type prefix

@@ -42,3 +42,11 @@ No CI/CD pipelines. No UI/UX. Optimizes existing code — does not add new behav
 - Regression thresholds documented for CI integration
 - No premature optimization — profile first, then act
 - Optimization never degrades readability without clear justification
+
+## Parallel Dispatch
+When dispatched as one of N instances via `@performance-engineer[scope]`:
+- **Scope Axis**: Performance domain (e.g., `[query-opt]`, `[cache]`, `[concurrency]`, `[memory]`)
+- **Write Scope**: Optimization code within the scoped domain
+- **Shared Reads**: Profiling data, baseline benchmarks, application code (read-only for analysis)
+- **Constraint**: Each instance optimizes its domain only; no cross-domain optimization that affects other instances' targets
+- **Integration**: Results synthesized after all parallel optimization branches merge; regression thresholds verified holistically

@@ -41,3 +41,11 @@ No production code (review and advise only). No test code. No CI/CD. No architec
 - All auth tokens short-lived + rotated
 - PII encrypted at rest, redacted in logs
 - Every finding has remediation guidance
+
+## Parallel Dispatch
+When dispatched as one of N instances via `@security-engineer[scope]`:
+- **Scope Axis**: Security concern (e.g., `[auth-flows]`, `[input-validation]`, `[secrets]`, `[dependency-audit]`)
+- **Read Scope**: MECE partition of security review area
+- **Output**: Separate security findings document per scope with severity-tagged issues
+- **MECE Coverage**: Union of all security-engineer scopes covers 100% of security review surface
+- **No Write Conflicts**: Read-only agent — scoping is for coverage guarantee, not conflict prevention

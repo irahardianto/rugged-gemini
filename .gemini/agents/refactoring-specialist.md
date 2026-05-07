@@ -50,3 +50,11 @@ This agent accepts refactoring requirements from three paths:
 - ADR if refactoring involves trade-offs
 - Complexity metrics (cyclomatic, cognitive) tracked before/after
 - Anti-pattern detection is systematic, not intuitive
+
+## Parallel Dispatch
+When dispatched as one of N instances via `@refactoring-specialist[scope]`:
+- **Scope Axis**: Module boundary or code smell cluster (e.g., `[user-module]`, `[task-module]`, `[auth-module]`)
+- **Write Scope**: Files within the scoped module boundary (e.g., `features/<scope>/**`)
+- **Shared Reads**: Interfaces, types, contracts from other modules (read-only)
+- **Constraint**: Each instance refactors exclusively within its module; cross-module interface changes require coordination
+- **Integration**: A final `@refactoring-specialist[integration]` instance verifies cross-module contracts remain compatible after parallel refactoring
