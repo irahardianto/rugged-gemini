@@ -1,7 +1,6 @@
 ---
 paths:
   - "**/*.jsx"
-  - "**/*.tsx"
   - "**/react*"
 ---
 
@@ -70,4 +69,4 @@ test('displays task title', () => {
 ### Related
 - TypeScript Idioms @.gemini/skills/typescript-idioms/SKILL.md
 - Frontend Design @.gemini/skills/frontend-design/SKILL.md
-- Accessibility Principles GEMINI.md § Accessibility Principles
+- Accessibility Principles @.gemini/skills/accessibility-principles/SKILL.md

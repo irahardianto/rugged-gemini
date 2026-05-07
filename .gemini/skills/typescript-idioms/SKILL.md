@@ -8,7 +8,20 @@ paths:
 
 TS type system = documentation + test + specification. Encode domain invariants so invalid states are unrepresentable. Lean into the compiler.
 
-> Scope: TS-specific type system and language idioms. Vue patterns: `@.gemini/skills/vue-idioms/SKILL.md`. File layout: `@.gemini/skills/project-structure-vue/SKILL.md`. Quality commands: GEMINI.md § Code Completion Mandate. Logging: `@.gemini/skills/logging-and-observability-principles/SKILL.md`.
+> Scope: TS-specific type system and language idioms. Quality commands: GEMINI.md § Code Completion Mandate. Logging: `@.gemini/skills/logging-and-observability-principles/SKILL.md`.
+
+### Framework Detection
+
+When working on `.ts`/`.tsx` files, detect the project framework from imports and load the corresponding idiom skill:
+
+| Import Pattern | Framework | Load Skill |
+|---|---|---|
+| `from 'vue'`, `from 'pinia'`, `from 'vue-router'`, `from '@vueuse/*'` | Vue 3 | `@.gemini/skills/vue-idioms/SKILL.md` |
+| `from 'react'`, `from 'react-dom'`, `from '@reduxjs/*'`, `from 'zustand'` | React | `@.gemini/skills/react-idioms/SKILL.md` |
+| `from '@angular/core'`, `from '@angular/*'` | Angular | `@.gemini/skills/angular-idioms/SKILL.md` |
+| `from 'next'`, `from 'next/*'` | Next.js | `@.gemini/skills/nextjs-idioms/SKILL.md` |
+
+Framework-specific file types (`.vue`, `.jsx`) auto-activate their skills directly. This table covers `.ts`/`.tsx` files that use framework APIs (composables, hooks, stores, services).
 
 ### Strict Mode — Non-Negotiable
 

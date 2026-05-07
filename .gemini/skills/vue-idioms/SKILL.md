@@ -1,8 +1,6 @@
 ---
 paths:
   - "**/*.vue"
-  - "**/*.ts"
-  - "**/*.tsx"
 ---
 
 ## Vue Idioms and Patterns
