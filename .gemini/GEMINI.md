@@ -297,12 +297,36 @@ Write idiomatic code for target language. Follow community conventions, not pers
 
 ### Language-Specific Rules
 Load relevant skill when working in that language:
+
+**Opinionated defaults:**
 - Go → `.gemini/skills/go-idioms/SKILL.md`
 - TypeScript → `.gemini/skills/typescript-idioms/SKILL.md`
 - Vue 3 → `.gemini/skills/vue-idioms/SKILL.md`
 - Flutter/Dart → `.gemini/skills/flutter-idioms/SKILL.md`
 - Rust → `.gemini/skills/rust-idioms/SKILL.md`
 - Python → `.gemini/skills/python-idioms/SKILL.md`
+
+**Community languages:**
+- Java → `.gemini/skills/java-idioms/SKILL.md`
+- C# → `.gemini/skills/csharp-idioms/SKILL.md`
+- C++ → `.gemini/skills/cpp-idioms/SKILL.md`
+- Swift → `.gemini/skills/swift-idioms/SKILL.md`
+- Kotlin → `.gemini/skills/kotlin-idioms/SKILL.md`
+- Elixir → `.gemini/skills/elixir-idioms/SKILL.md`
+- JavaScript → `.gemini/skills/javascript-idioms/SKILL.md`
+- PHP → `.gemini/skills/php-idioms/SKILL.md`
+- Ruby → `.gemini/skills/ruby-idioms/SKILL.md`
+- SQL → `.gemini/skills/sql-idioms/SKILL.md`
+
+**Frameworks (load alongside language idioms):**
+- React → `.gemini/skills/react-idioms/SKILL.md`
+- Angular → `.gemini/skills/angular-idioms/SKILL.md`
+- Next.js → `.gemini/skills/nextjs-idioms/SKILL.md`
+- Django → `.gemini/skills/django-idioms/SKILL.md`
+- Laravel → `.gemini/skills/laravel-idioms/SKILL.md`
+- Rails → `.gemini/skills/rails-idioms/SKILL.md`
+- Spring Boot → `.gemini/skills/spring-boot-idioms/SKILL.md`
+- .NET → `.gemini/skills/dotnet-idioms/SKILL.md`
 
 ---
 
@@ -324,7 +348,13 @@ Load relevant skill when working in that language:
 | Single frontend | Flatten: `src/` at root |
 | Single mobile | Flatten: `lib/` at root |
 
-Language-specific layouts in skill files.
+### Project Structure Layouts
+Language-specific project layouts:
+- Go → `.gemini/skills/project-structure-go/SKILL.md`
+- Vue → `.gemini/skills/project-structure-vue/SKILL.md`
+- Python → `.gemini/skills/project-structure-python/SKILL.md`
+- Rust → `.gemini/skills/project-structure-rust/SKILL.md`
+- Flutter → `.gemini/skills/project-structure-flutter/SKILL.md`
 
 ---
 
@@ -334,22 +364,35 @@ Language-specific layouts in skill files.
 
 ### Agent Routing
 
-| Primitive | Agent Type | Rationale |
-|-----------|-----------|-----------|
-| SCOUT | @scout (general) or domain agent (specialized) | Read-only codebase exploration, research |
-| DESIGN | architect | Architecture decisions, contracts |
-| BUILD | Domain-specific engineer | backend/frontend/mobile per MECE domains |
-| TEST | test-automation-engineer | E2E, integration test infrastructure |
-| REVIEW | qa-analyst + security-engineer + optional ux-reviewer | Quality gates |
-| REMEDIATE | Domain-specific engineer | Matches BUILD agent for the domain |
-| OPTIMIZE | performance-engineer | Profiling, benchmarking, optimization |
-| INCIDENT | incident-responder + domain engineers | Triage, RCA, mitigation, postmortem |
-| REFACTOR | refactoring-specialist | Code smell detection, safe transformation |
-| VERIFY | qa-analyst | Full test suite, lint, type check, build |
-| DOCUMENT | technical-writer | Docs, API docs, changelogs |
+Agents are organized in 4 layers: Research (read-only exploration), Design (read-only decisions/contracts), Builder (write in worktrees), Reviewer (read-only quality gates).
 
-### MCP Tools — Known Limitation
-**Sub-agents may NOT have access to MCP tools.** MCP tools are only available in the main session. Do NOT instruct sub-agents to use MCP tools — they will fail. For tasks requiring MCP tools, execute those in the main session.
+| Primitive | Agent Type | Layer | Rationale |
+|-----------|-----------|-------|-----------|
+| SCOUT | @scout (general) or domain agent (specialized research) | Research | Read-only codebase exploration, research |
+| DESIGN | architect (lead) + optional ux-reviewer, database-expert, security-engineer, performance-engineer | Design | Multi-disciplinary design — architect leads, pulls domain experts from other layers |
+| PRE-MORTEM | incident-responder + optional security-engineer, performance-engineer, database-expert | Reviewer | Proactive failure analysis on proposed designs |
+| BUILD | Implementation agents | Builder | backend/frontend/mobile per MECE domains |
+| TEST | test-automation-engineer | Builder | E2E, integration test infrastructure |
+| REVIEW | qa-analyst + security-engineer + optional ux-reviewer, database-expert | Reviewer | Quality gates |
+| REMEDIATE | Fix agents | Builder | Matches BUILD agent for the domain |
+| OPTIMIZE | performance-engineer | Builder | Profiling, benchmarking, optimization |
+| INCIDENT | incident-responder + domain engineers | Reviewer | Reactive: triage, RCA, mitigation, postmortem |
+| REFACTOR | refactoring-specialist | Builder | Code smell detection, safe transformation |
+| VERIFY | qa-analyst | Reviewer | Full test suite, lint, type check, build |
+| DOCUMENT | technical-writer | Builder | Docs, API docs, changelogs |
+
+### Parallel Dispatch
+
+Agents support two parallelism modes:
+
+- **Cross-domain**: Different agent types in parallel (e.g., `@backend-engineer` ∥ `@frontend-engineer`). Always safe — disjoint domains by definition.
+- **Intra-domain**: Multiple scoped instances of the same agent type via `@agent-name[scope]` syntax (e.g., `@backend-engineer[auth]` ∥ `@backend-engineer[tasks]`). Requires MECE decomposition.
+
+Intra-domain dispatch uses 4 composable skills from `.gemini/skills/`:
+1. `parallel-dispatch-decomposition` — break work into MECE scope cards
+2. `parallel-dispatch-dag` — build dependency graph, topological sort into levels
+3. `parallel-dispatch-ownership` — validate exclusive write scopes, no file overlap
+4. `parallel-dispatch-merge` — sequential merge with quality gates between branches
 
 ---
 

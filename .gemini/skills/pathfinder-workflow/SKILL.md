@@ -45,7 +45,7 @@ A **Semantic Path** is the unified addressing scheme for Pathfinder tools.
 ### Tool Preference Table
 
 
-> **Canonical source:** The always-on rule `pathfinder-tool-routing.md` is the single source of truth for which tool to use. This table adds the **"Why"** column for deeper understanding but defers to the rule for routing decisions.
+> **Canonical source:** `GEMINI.md § Pathfinder Tool Routing` is the single source of truth for which tool to use. This table adds the **"Why"** column for deeper understanding but defers to GEMINI.md for routing decisions.
 
 | Action | Prefer (Pathfinder) | Instead of (Built-in) | Why |
 |---|---|---|---|

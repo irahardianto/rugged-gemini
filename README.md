@@ -33,8 +33,8 @@ You can drop this configuration into the root of your project to transform how y
 
 *   📏 **Consolidated Rules** — covering security, reliability, architecture, maintainability, language idioms, and DevOps, all inside a single auto-loaded `GEMINI.md`.
 *   🤖 **15 Specialized Agents** — organized into Research, Builder, and Reviewer layers with strict MECE domain boundaries.
-*   🛠️ **66 Specialized Skills** — on-demand capabilities spanning 16 languages/frameworks, debugging, design, performance, security, and more.
-*   🔄 **Orchestrated Commands** — end-to-end development processes via `/orchestrate` and `/refactor` native Gemini CLI commands with 11 workflow templates.
+*   🛠️ **70 Specialized Skills** — on-demand capabilities spanning 14 languages and 10 frameworks, debugging, design, performance, security, parallel dispatch, and more.
+*   🔄 **Orchestrated Commands** — end-to-end development processes via `/orchestrate` and `/refactor` native Gemini CLI commands with 12 workflow templates.
 
 > **💡 Everything is modular.** Agents, rules, and skills work independently — you don't need workflows to benefit from them. Use only what you need, modify anything, or build your own commands. It's a toolkit, not a framework.
 
@@ -55,11 +55,7 @@ To equip your AI agent with these superpowers, follow these steps.
     ```sh
     cp -r /path/to/rugged-gemini/.gemini ./your-project-root/
     ```
-2.  Copy `GEMINI.md` to your project root (Gemini CLI auto-loads this file).
-    ```sh
-    cp ./your-project-root/.gemini/GEMINI.md ./your-project-root/GEMINI.md
-    ```
-3.  Update `settings.json` to match your MCP server installations (if applicable).
+2.  Update `settings.json` to match your MCP server installations (if applicable).
 
 ### Examples
 
@@ -69,9 +65,6 @@ git clone https://github.com/irahardianto/rugged-gemini.git
 
 # Copy into a specific project
 cp -r rugged-gemini/.gemini ./my-project/
-
-# Copy the GEMINI.md to the project root
-cp ./my-project/.gemini/GEMINI.md ./my-project/GEMINI.md
 ```
 
 <!-- USAGE -->
@@ -140,8 +133,8 @@ The power of the setup comes from its extensive collection of rules covering eve
 Loadable on demand via the `.gemini/skills/` directory:
 
 #### 🔤 Language & Framework Idioms (24 skills)
-*   **10 Language Idioms**: Go, TypeScript, Rust, Python, Java, C#, C++, Swift, Kotlin, Elixir, JavaScript, PHP, Ruby, SQL
-*   **8 Framework Idioms**: Vue 3, Flutter, React, Angular, Next.js, Django, Laravel, Rails, Spring Boot, .NET
+*   **14 Language Idioms**: Go, TypeScript, Rust, Python, Java, C#, C++, Swift, Kotlin, Elixir, JavaScript, PHP, Ruby, SQL
+*   **10 Framework Idioms**: Vue 3, Flutter, React, Angular, Next.js, Django, Laravel, Rails, Spring Boot, .NET
 
 #### 🔧 Process & Domain Skills
 *   **Debugging Protocol**: Systematic hypothesis-driven approach to solving errors.
@@ -159,7 +152,7 @@ Loadable on demand via the `.gemini/skills/` directory:
 
 #### ⚡ Performance & Operations Skills
 *   **Performance Optimization**: Profile-driven performance optimization tooling.
-*   **Incident Response**: Structured triage, root-cause analysis, and postmortem workflows.
+*   **Incident Response**: Structured triage, root-cause analysis, postmortem workflows, and pre-mortem failure analysis.
 *   **Chaos Testing**: Failure injection strategies and resilience validation.
 *   **Supply Chain Security**: Dependency auditing, SBOM generation, and vulnerability management.
 
@@ -181,10 +174,10 @@ The setup includes native Gemini CLI commands for orchestration and safe refacto
 Decomposes user requirements into sub-agent dispatches.
 
 ```
-SCOUT → DESIGN → BUILD → TEST → REVIEW → REMEDIATE → VERIFY → DOCUMENT
+SCOUT → DESIGN → PRE-MORTEM → BUILD → TEST → REVIEW → REMEDIATE → VERIFY → DOCUMENT
 ```
 
-Additional specialized primitives: `OPTIMIZE` (performance), `INCIDENT` (triage & postmortem), `REFACTOR` (safe code transformation).
+Additional specialized primitives: `PRE-MORTEM` (proactive failure analysis), `OPTIMIZE` (performance), `INCIDENT` (triage & postmortem), `REFACTOR` (safe code transformation).
 
 #### 🔧 Specialized Workflows
 
@@ -212,52 +205,56 @@ Additional specialized primitives: `OPTIMIZE` (performance), `INCIDENT` (triage 
 │   ├── qa-analyst.md
 │   ├── security-engineer.md
 │   ├── ux-reviewer.md
-│   ├── scout.md              # NEW — research & exploration
-│   ├── performance-engineer.md  # NEW — profiling & optimization
-│   ├── incident-responder.md    # NEW — triage & postmortems
-│   └── refactoring-specialist.md  # NEW — safe code transformation
+│   ├── scout.md
+│   ├── performance-engineer.md
+│   ├── incident-responder.md
+│   └── refactoring-specialist.md
 ├── commands/              # 2 orchestrated commands
-│   ├── orchestrate.toml   # Multi-agent pipeline manager (11 templates)
+│   ├── orchestrate.toml   # Multi-agent pipeline manager (12 templates)
 │   └── refactor.toml      # Safe incremental restructuring (3-path elicitation)
-└── skills/                # 66 on-demand skills
-    ├── go-idioms/         # Language idioms (10 languages)
+└── skills/                # 70 on-demand skills
+    ├── go-idioms/         # Language idioms (14 languages)
     ├── typescript-idioms/
     ├── rust-idioms/
     ├── python-idioms/
-    ├── java-idioms/       # NEW
-    ├── csharp-idioms/     # NEW
-    ├── cpp-idioms/        # NEW
-    ├── swift-idioms/      # NEW
-    ├── kotlin-idioms/     # NEW
-    ├── elixir-idioms/     # NEW
-    ├── javascript-idioms/ # NEW
-    ├── sql-idioms/        # NEW
-    ├── php-idioms/        # NEW
-    ├── ruby-idioms/       # NEW
-    ├── vue-idioms/        # Framework idioms (8 frameworks)
+    ├── java-idioms/
+    ├── csharp-idioms/
+    ├── cpp-idioms/
+    ├── swift-idioms/
+    ├── kotlin-idioms/
+    ├── elixir-idioms/
+    ├── javascript-idioms/
+    ├── sql-idioms/
+    ├── php-idioms/
+    ├── ruby-idioms/
+    ├── vue-idioms/        # Framework idioms (10 frameworks)
     ├── flutter-idioms/
-    ├── react-idioms/      # NEW
-    ├── angular-idioms/    # NEW
-    ├── nextjs-idioms/     # NEW
-    ├── django-idioms/     # NEW
-    ├── laravel-idioms/    # NEW
-    ├── rails-idioms/      # NEW
-    ├── spring-boot-idioms/ # NEW
-    ├── dotnet-idioms/     # NEW
+    ├── react-idioms/
+    ├── angular-idioms/
+    ├── nextjs-idioms/
+    ├── django-idioms/
+    ├── laravel-idioms/
+    ├── rails-idioms/
+    ├── spring-boot-idioms/
+    ├── dotnet-idioms/
     ├── debugging-protocol/ # Process & domain skills
     ├── code-review/
     ├── guardrails/
-    ├── incident-response/ # NEW
-    ├── chaos-testing/     # NEW
-    ├── refactoring-patterns/ # NEW
-    ├── supply-chain-security/ # NEW
-    ├── data-engineering/  # NEW
-    ├── ml-engineering/    # NEW
-    ├── cli-development/   # NEW
-    ├── payment-integration/ # NEW
-    ├── embedded-systems/  # NEW
-    ├── api-documentation/ # NEW
-    └── ...                # + 22 more (perf, adr, design, etc.)
+    ├── incident-response/
+    ├── chaos-testing/
+    ├── refactoring-patterns/
+    ├── supply-chain-security/
+    ├── data-engineering/
+    ├── ml-engineering/
+    ├── cli-development/
+    ├── payment-integration/
+    ├── embedded-systems/
+    ├── api-documentation/
+    ├── parallel-dispatch-decomposition/ # Parallel dispatch primitives
+    ├── parallel-dispatch-dag/
+    ├── parallel-dispatch-ownership/
+    ├── parallel-dispatch-merge/
+    └── ...                # + 18 more (perf, adr, design, etc.)
 ```
 
 <!-- ROADMAP -->
