@@ -103,6 +103,33 @@ Never disable a lint rule or suppress a warning to pass. Fix root cause.
 
 ---
 
+## Non-Interactive Command Execution Mandate
+
+**All shell commands MUST run without interactive prompts.** AI agents cannot respond to prompts — a stuck prompt kills the entire workflow.
+
+### Required Flags
+
+| Tool | Non-Interactive Pattern |
+|---|---|
+| `npx` | Always `npx -y <package>` |
+| `npm install` | `CI=true npm install` or `CI=true npm ci` |
+| `npm create` / `npm init` | Pass `--` + all template/option flags |
+| Scaffolding (`create-vite`, etc.) | Run `--help` first, then pass all options as CLI flags |
+| `pnpm` | `pnpm install --no-frozen-lockfile` |
+| `yarn` | `yarn install --no-immutable` |
+
+### Rules
+1. **Set `CI=true`** environment variable for all npm/yarn/pnpm commands
+2. **Never run bare scaffolding commands** — always specify template and options as flags
+3. **Run `--help` first** on any unfamiliar scaffolding tool to discover non-interactive flags
+4. **Last resort**: pipe `yes |` if no non-interactive flag exists
+
+Running an interactive command that blocks the agent is a **critical failure**.
+
+For full details: `.gemini/skills/command-execution-principles/SKILL.md`
+
+---
+
 ## Core Design Principles
 
 ### SOLID
