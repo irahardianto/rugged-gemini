@@ -425,29 +425,54 @@ Intra-domain dispatch uses 4 composable skills from `.gemini/skills/`:
 
 ## Pathfinder Tool Routing
 
-> **Applicability:** When Pathfinder MCP tools are available, follow these routing rules. If not available, use built-in tools as normal.
+Semantic navigation tools. Workflows and deep details: `.gemini/skills/pathfinder/SKILL.md`.
 
-### Core Principle
-Pathfinder operates at the **semantic level** (symbols, functions, classes). Built-in tools operate at **text level**. **Always prefer semantic tools for source code.**
+### Pre-Flight
 
-### Tool Preference
+```
+mcp({ server: "pathfinder" })  // Tools listed → available. Error → use built-in.
+```
 
-| Action | Prefer (Pathfinder) | Instead of (Built-in) |
+Check once per session.
+
+### Tool Table
+
+| Task | Tool | Notes |
 |---|---|---|
-| Explore project structure | `get_repo_map` | directory listing |
-| Search for code patterns | `search_codebase` | grep |
-| Read a function or class | `read_symbol_scope` | read file |
-| Edit a function body | `replace_body` | edit file |
-| Edit entire declaration | `replace_full` | edit file |
-| Batch-edit multiple symbols | `replace_batch` | multiple edits |
-| Add code before/after symbol | `insert_before` / `insert_after` | edit file |
-| Delete a function or class | `delete_symbol` | edit file |
-| Pre-check a risky edit | `validate_only` | no equivalent |
-| Create a new file | `create_file` | write file |
-| Edit config files | `write_file` | edit file |
+| Project skeleton | `get_repo_map` | Returns semantic paths — copy-paste into other tools |
+| Search code | `search_codebase` | AST-filtered, returns `enclosing_semantic_path`. Check `coverage_percent`. |
+| Read one symbol | `read_symbol_scope` | Exact function/class extraction |
+| Read full file + AST | `read_source_file` | Source files only; use `read_file` for config. `detail_level="source_only"` for minimal tokens. |
+| Symbol + dependencies | `read_with_deep_context` | LSP-powered callee signatures |
+| Jump to definition | `get_definition` | LSP with ripgrep fallback |
+| Find callers and callees | `find_callers_callees` | Callers + callees via LSP call hierarchy. Default max_depth=3. |
+| Find all references | `find_all_references` | All usages including non-call references (field access, imports, type annotations) |
+| LSP status | `lsp_health` | Check when navigation returns `degraded: true` |
+| Read config file | `read_file` | For YAML, TOML, JSON, .env, Dockerfile |
 
-### Addressing Rules
-Semantic paths MUST include file path and `::`. Example: `src/main.rs::MyClass.my_function`
+### Addressing
 
-### Graceful Fallback
-If Pathfinder unavailable, fall back to built-in tools transparently. Do not block.
+Semantic paths MUST include file path + `::` + symbol. Example: `src/auth.ts::AuthService.login`
+
+### Degraded Mode
+
+`get_definition`, `find_callers_callees`, `read_with_deep_context`, `find_all_references` use LSP. When `degraded: true`:
+- Text output starts with: `⚠️ DEGRADED ({reason}) — {tool-specific guidance}`
+- Results are best-effort — never treat empty as confirmed-zero
+- Check `degraded_reason` and `lsp_readiness`
+
+### Budget Controls
+
+| Parameter | Tool | Default | Purpose |
+|---|---|---|---|
+| `project_only` | `find_callers_callees`, `read_with_deep_context` | `true` | Filter out stdlib/vendor noise |
+| `max_references` | `find_callers_callees` | `50` | Cap total BFS references |
+| `max_depth` | `find_callers_callees` | `3` | BFS traversal depth (clamped 1–5). Use 4-5 for large-scale API changes. |
+| `max_dependencies` | `read_with_deep_context` | `50` | Cap outgoing dependency entries |
+| `max_tokens` | `get_repo_map` | auto | Auto-scales for monorepos |
+
+When `references_truncated` or `dependencies_truncated` is true, increase the corresponding limit.
+
+### Fallback
+
+If Pathfinder unavailable → use built-in tools (`Read`, `Grep`, `Glob`). Do not block.
